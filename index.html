@@ -1,949 +1,1017 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة التفوق في إدارة الصيانة والسلامة المهنية</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #0f172a;
-            color: #e2e8f0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المرجع الهندسي الشامل: إدارة الصيانة والسلامة الصناعية | جامعة بغداد</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- KaTeX CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#f0f9ff', 500: '#0284c7', 600: '#0369a1', 700: '#075985', 900: '#0c4a6e' }
+          }
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 3px;
-        }
-        .tab-btn.active {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Cairo', sans-serif; }
+    .katex { direction: ltr !important; display: inline-block; font-size: 1.08em; }
+    .katex-display { direction: ltr !important; overflow-x: auto; padding: 0.4rem 0; margin: 0.5rem 0; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.03); }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+    .sec-card { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 1.25rem; }
+    .dark .sec-card { background-color: #0f172a; border-color: #1e293b; color: #cbd5e1; }
+    .cheat-box { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); color: #ffffff; border-radius: 1rem; padding: 1.25rem; margin-bottom: 1.25rem; }
+    .warn-box { background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 0.75rem; padding: 1rem; color: #92400e; margin-top: 1rem; }
+    .dark .warn-box { background-color: rgba(69, 26, 3, 0.35); border-color: #78350f; color: #fde68a; }
+    .decision-box { background-color: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 0.75rem; padding: 1rem; color: #065f46; font-weight: 600; margin-top: 0.75rem; }
+    .dark .decision-box { background-color: rgba(6, 78, 59, 0.4); border-color: #065f46; color: #a7f3d0; }
+    .tbl-std { width: 100%; border-collapse: collapse; text-align: right; font-size: 0.825rem; }
+    .tbl-std th { background-color: #f1f5f9; padding: 0.5rem 0.75rem; font-weight: 700; border: 1px solid #cbd5e1; color: #0f172a; }
+    .dark .tbl-std th { background-color: #1e293b; border-color: #334155; color: #f8fafc; }
+    .tbl-std td { padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; }
+    .dark .tbl-std td { border-color: #334155; }
+    .btn-action { transition: all 0.2s ease; cursor: pointer; }
+    .btn-action:hover { transform: translateY(-1px); }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col custom-scrollbar">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
-    <!-- Header -->
-    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-blue-500/30">
-                    ⚙️
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold text-white tracking-wide">منظومة المراجعة الشاملة لإدارة الصيانة الصناعية</h1>
-                    <p class="text-xs text-slate-400">قسم الإدارة الصناعية • كلية الإدارة والاقتصاد • متوافق مع نمط امتحانات (صح / خطأ)</p>
-                </div>
-            </div>
-
-            <!-- Navigation Tabs -->
-            <nav class="flex flex-wrap gap-2 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700/60">
-                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200">
-                    ✍️ بنك أسئلة صح/خطأ
-                </button>
-                <button onclick="switchTab('summaries')" id="tab-btn-summaries" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-white transition-all duration-200">
-                    📚 ملخصات ومصائد الامتحانات
-                </button>
-                <button onclick="switchTab('math')" id="tab-btn-math" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-white transition-all duration-200">
-                    📐 القوانين والمسائل المحلولة
-                </button>
-                <button onclick="switchTab('prompts')" id="tab-btn-prompts" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-white transition-all duration-200">
-                    🤖 أدوات مهندس الأوامر
-                </button>
-            </nav>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center gap-3">
+          <button id="sidebarToggle" class="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="القائمة">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+            <i class="fa-solid fa-gears text-2xl"></i>
+          </div>
+          <div>
+            <h1 class="text-base sm:text-lg font-black text-slate-900 dark:text-white">إدارة الصيانة والسلامة الصناعية</h1>
+            <p class="text-xs text-slate-500 dark:text-slate-400">جامعة بغداد | كلية الإدارة والاقتصاد | قسم الإدارة الصناعية</p>
+          </div>
         </div>
-    </header>
 
-    <!-- Main Content Area -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
+        <div class="hidden md:flex items-center flex-1 max-w-md mx-6">
+          <div class="relative w-full">
+            <input type="text" id="globalSearchInput" placeholder="ابحث في القوانين، المفاهيم، المسائل..." class="w-full pl-10 pr-4 py-2 text-xs rounded-full bg-slate-100 dark:bg-slate-800 border-none focus:ring-2 focus:ring-sky-500 text-slate-800 dark:text-slate-100">
+            <span class="absolute left-3 top-2.5 text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+          </div>
+        </div>
 
-        <!-- TAB 1: QUIZ SECTION -->
-        <section id="section-quiz" class="space-y-6">
-            <!-- Quiz Controls and Filters -->
-            <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl shadow-xl flex flex-col lg:flex-row items-center justify-between gap-4">
-                <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
-                    <label class="text-sm text-slate-400 font-medium">تصفية حسب الفصل:</label>
-                    <select id="chapterFilter" onchange="filterQuestions()" class="bg-slate-900 border border-slate-700 text-slate-200 text-sm rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        <option value="all">جميع الفصول (شامل المنهج)</option>
-                        <option value="1">الفصل 1: مدخل ومفاهيم الصيانة</option>
-                        <option value="2">الفصل 2: العطلات وتصنيفها</option>
-                        <option value="3">الفصل 3: تخطيط أعمال الصيانة</option>
-                        <option value="4">الفصل 4: الهيكل التنظيمي للصيانة</option>
-                        <option value="5">الفصل 5: تكاليف الصيانة</option>
-                        <option value="6">الفصل 6: الاستبدال</option>
-                        <option value="7">الفصل 7: المعولية (Reliability)</option>
-                        <option value="8">الفصل 8: الصيانة الإنتاجية الشاملة (TPM)</option>
-                        <option value="9">ملحق: السلامة والصحة المهنية</option>
-                    </select>
-                    <button onclick="resetQuiz()" class="px-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-sm font-semibold transition">
-                        🔄 إعادة تعيين الاختبار
-                    </button>
-                </div>
-
-                <!-- Stats Bar -->
-                <div class="flex items-center gap-6 bg-slate-900/80 px-5 py-2.5 rounded-xl border border-slate-700/80 text-sm">
-                    <div>
-                        <span class="text-slate-400">تمت الإجابة: </span>
-                        <span id="stat-answered" class="font-bold text-white">0</span>/<span id="stat-total" class="font-bold text-slate-300">0</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400">صحيحة: </span>
-                        <span id="stat-correct" class="font-bold text-emerald-400">0</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400">خاطئة: </span>
-                        <span id="stat-wrong" class="font-bold text-rose-400">0</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400">النسبة: </span>
-                        <span id="stat-score" class="font-bold text-blue-400">0%</span>
-                    </div>
-                </div>
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex flex-col items-end">
+            <span class="text-[11px] font-bold text-slate-500">إنجاز الاختبارات</span>
+            <div class="flex items-center gap-2">
+              <div class="w-24 bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                <div id="globalQuizProgressBar" class="bg-emerald-500 h-full w-0 transition-all duration-300"></div>
+              </div>
+              <span id="globalQuizScoreBadge" class="text-xs font-black text-emerald-600 dark:text-emerald-400">0%</span>
             </div>
+          </div>
+          <button id="themeToggle" class="p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="تبديل المظهر">
+            <i class="fa-solid fa-moon text-lg dark:hidden"></i>
+            <i class="fa-solid fa-sun text-lg hidden dark:inline"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-            <!-- Questions Container -->
-            <div id="questionsContainer" class="space-y-4">
-                <!-- Dynamically populated -->
+  <!-- Main Container -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 flex gap-8">
+    
+    <!-- Sidebar -->
+    <aside id="sidebarDrawer" class="fixed inset-y-0 right-0 z-50 w-72 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-5 transform translate-x-full lg:translate-x-0 lg:static lg:p-0 lg:border-none lg:bg-transparent transition-transform duration-300 ease-in-out overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200 dark:border-slate-800 lg:hidden">
+        <h2 class="text-sm font-bold">فهرس المحاور التعليمية</h2>
+        <button id="closeSidebar" class="p-1 text-slate-500"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="sticky top-28 space-y-3">
+        <div class="p-3.5 rounded-2xl bg-sky-50 dark:bg-slate-800/80 border border-sky-100 dark:border-slate-700 text-xs">
+          <div class="flex items-center gap-1.5 text-sky-700 dark:text-sky-400 font-bold mb-1">
+            <i class="fa-solid fa-graduation-cap"></i><span>المنهاج الأكاديمي المعتمد</span>
+          </div>
+          <p class="text-slate-600 dark:text-slate-300">م.م. جاسم حسين زناد &amp; م. عبد العاطي العقيب</p>
+        </div>
+
+        <nav class="space-y-1 text-xs font-semibold" id="navLinksContainer">
+          <a href="#module-1" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-sky-100 dark:bg-sky-950 text-sky-600 flex items-center justify-center font-bold">1</span> مدخل الصيانة والأنظمة الحديثة</a>
+          <a href="#module-2" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-600 flex items-center justify-center font-bold">2</span> العطلات وتخطيط الاستعادة</a>
+          <a href="#module-3" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-teal-100 dark:bg-teal-950 text-teal-600 flex items-center justify-center font-bold">3</span> تخطيط الصيانة ونماذج القوى العاملة</a>
+          <a href="#module-4" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center font-bold">4</span> الهيكل التنظيمي وتصميم الورش</a>
+          <a href="#module-5" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-rose-100 dark:bg-rose-950 text-rose-600 flex items-center justify-center font-bold">5</span> تكاليف الصيانة والميزانية</a>
+          <a href="#module-6" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-purple-100 dark:bg-purple-950 text-purple-600 flex items-center justify-center font-bold">6</span> نماذج وقرارات الاستبدال الاقتصادي</a>
+          <a href="#module-7" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-600 flex items-center justify-center font-bold">7</span> نظرية ومقاييس المعولية</a>
+          <a href="#module-8" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-orange-100 dark:bg-orange-950 text-orange-600 flex items-center justify-center font-bold">8</span> الصيانة الإنتاجية الشاملة (TPM)</a>
+          <a href="#module-9" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"><span class="w-5 h-5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center font-bold">9</span> السلامة والصحة المهنية في المنشآت</a>
+        </nav>
+      </div>
+    </aside>
+
+    <div id="drawerBackdrop" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-40 hidden lg:hidden"></div>
+
+    <!-- Main Content -->
+    <main class="flex-1 min-w-0 space-y-14 pb-20" id="mainContentContainer">
+
+      <!-- Hero Banner -->
+      <section class="rounded-3xl bg-gradient-to-r from-sky-700 via-indigo-800 to-slate-900 text-white p-7 md:p-10 shadow-xl space-y-3">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sky-200 text-xs font-semibold">
+          <i class="fa-solid fa-award"></i> المنهاج التفاعلي المعتمد لطلبة المرحلة الثالثة
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black">الموسوعة الهندسية لإدارة الصيانة والسلامة الصناعية</h2>
+        <p class="text-slate-200 text-xs sm:text-sm leading-relaxed max-w-3xl">
+          منهاج تعليمي وتطبيقي شامل يغطي محاور الصيانة الوقائية والشرطية، وتخطيط القوى العاملة، والاقتصاد الهندسي للاستبدال (الجدولي وNPV والمصابيح)، وهندسة المعولية، وركائز TPM اليابانية، وإجراءات السلامة والوقاية المهنية.
+        </p>
+      </section>
+
+      <!-- MODULE 1 -->
+      <section id="module-1" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-sky-600 text-white text-sm flex items-center justify-center">1</span>
+            الفصل الأول: مدخل إلى الصيانة والأنظمة الحديثة
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">النظرية والنظام</span>
+        </div>
+
+        <!-- Tier 1: Detailed Theory -->
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-book-open text-sky-600"></i> مفهوم الصيانة واستنتاجاتها</h3>
+          <p><strong>التعريف المعتمد:</strong> الصيانة هي مجموعة الفعاليات الفنية والإدارية الهادفة لحفظ الجزء أو الماكنة أو إعادتها إلى حالة التشغيل الطبيعية لأداء الغرض المطلوب منها بأقل وقت وكلفة. وإدارة الصيانة هي تخطيط وتنظيم وتنفيذ والرقابة على الموارد المادية والمالية والبشرية لتحقيق أهداف النظام بكفاءة.</p>
+          <div class="p-3 bg-sky-50 dark:bg-slate-800/80 rounded-lg border-r-4 border-sky-600 font-medium">
+            <strong>الاستنتاجات الثلاثة الجوهرية:</strong> (1) تقليل العطلات وليس منعها التام لأن المنع المطلق هدف مثالي مستحيل التحقيق، (2) الحفاظ على الجاهزية ضمن كلفة اقتصادية مقبولة، (3) الصيانة عملية فنية هندسية محكومة بوظائف إدارية (تخطيط، تنظيم، تنفيذ، رقابة، وتحفيز).
+          </div>
+          <p><strong>مثلث النجاح التشغيلي:</strong> التفاعل العضوي بين (المشغل - الماكنة - فني الصيانة). <strong>المقارنة بين النظرة القديمة والحديثة:</strong> انتقلت الصيانة من معالجة العطل بعد حدوثه بأسلوب عشوائي إلى الصيانة الوقائية والاستباقية المبرمجة بالاعتماد على الحاسوب وCMMS وتقليل التكاليف الإجمالية وتدريب الفنيين واعتبار الوقت ميزة تنافسية.</p>
+          <p><strong>التصنيف والاستراتيجيات الحديثة:</strong> الصيانة غير المخططة (الاضطرارية الطارئة)، والصيانة المخططة وتشمل: الوقائية (PM)، العلاجية التصحيحية (CM)، والصيانة الظرفية/الشرطية (CBM) القائمة على مراقبة مؤشرات الاهتزاز في كراسي التحميل، الفحص الكيميائي للزيت، سمك حلقات السلاسل، وحرارة المحركات. <strong>الصيانة المختلطة (MMS):</strong> تطبيق مزيج وفق طبيعة الجزء (في السيارة: إنارة = CM، زيت = PM، صوت المحرك = CBM). <strong>التصميم لأجل الصيانة (DFM):</strong> وحدات الاستبدال الخطي (LRU) في الطائرات للاستبدال السريع بين الرحلات دون تفكيك باقي الأجزاء.</p>
+          <p><strong>مكونات PM وملفات CMMS الستة:</strong> الفحص (عام ومتخصص)، التزييت والتشحيم (سوائل، نصف صلبة، صلبة، غازية)، التخطيط، التوثيق، أوامر العمل الستة (وقائية، مجدولة، غير مجدولة، طارئة، تنبؤية، ورئيسية)، والتدريب. وملفات CMMS: الموجودات، الأعمال القياسية، أوامر العمل، تاريخ الماكنة، العاملين، والمواد الاحتياطية.</p>
+        </div>
+
+        <!-- Tier 2: Cheat Sheet -->
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-sky-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> بطاقة القوانين والمفاهيم - الفصل الأول</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>المفهوم / المعادلة</th><th>الصيغة</th><th>البيان</th></tr>
+            <tr><td>الكلفة الكلية للصيانة</td><td>$TC = C_{\text{PM}} + C_{\text{CM}} + C_{\text{Downtime}}$</td><td>توازن التكاليف المباشرة للوقاية والعلاج مع كلف التوقف.</td></tr>
+            <tr><td>شرط اعتماد الصيانة الوقائية</td><td>$C_{\text{PM}} < C_{\text{Breakdown}} + C_{\text{Loss}}$</td><td>تُعتمد PM فقط إذا كان وفر الخسائر أكبر من تكلفة العقد الوقائي.</td></tr>
+          </table>
+        </div>
+
+        <!-- Tier 3: Solved Problem -->
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p1')">
+            <span><i class="fa-solid fa-calculator text-sky-600 ml-1"></i> حالة تطبيقية (1-1): المفاضلة الاقتصادية بين تغيير الزيت دورياً أو بالفحص الكيميائي (CBM)</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p1" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المسألة:</strong> مصنع يمتلك 10 ضواغط تعمل 6,000 ساعة سنوياً. سياسة PM الحالية تستبدل الزيت كل 2,000 ساعة بكلفة 300 دينار لكل استبدال. المقترح: تطبيق CBM بفحص كيميائي كل 1,000 ساعة بكلفة 25 ديناراً للفحص، حيث أثبتت التجارب أن التغيير الفعلي للزيت يتأخر إلى كل 4,000 ساعة. ما التوصية الهندسية؟</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • سياسة PM: عدد الاستبدالات = $6000 / 2000 = 3$. الكلفة للماكنة = $3 \times 300 = 900$ دينار. الإجمالي = $10 \times 900 = 9,000$ دينار/سنة.<br>
+              • سياسة CBM: الفحوصات = $6000 / 1000 = 6 \implies 6 \times 25 = 150$ دينار. الاستبدالات = $6000 / 4000 = 1.5 \implies 1.5 \times 300 = 450$ دينار. الكلفة للماكنة = $150 + 450 = 600$ دينار. الإجمالي = $10 \times 600 = 6,000$ دينار/سنة.
             </div>
-        </section>
+            <div class="decision-box">القرار: اعتماد CBM يوفر 3,000 دينار سنوياً (وفر بنسبة 33.3%) ويقلل الهدر البيئي للزيوت.</div>
+          </div>
+        </div>
 
-        <!-- TAB 2: SUMMARIES & EXAM TRAPS -->
-        <section id="section-summaries" class="hidden space-y-8">
-            <div class="bg-blue-950/40 border border-blue-800/60 p-6 rounded-2xl flex items-start gap-4">
-                <span class="text-3xl">💡</span>
-                <div>
-                    <h3 class="text-lg font-bold text-blue-300 mb-1">دليل التعامل مع امتحانات الصح والخطأ في مادة إدارة الصيانة</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        غالباً ما تعتمد الأسئلة الخادعة على التلاعب بالكلمات الحصرية مثل: <strong class="text-amber-400">«دائماً، تمنع كلياً، هدف بحد ذاته، تتطابق، بصورة مطلقة»</strong>، أو الخلط المتعمد بين المصطلحات (مثل الخلط بين الصيانة الوقائية والظرفية، أو بين التنظيم المركزي واللامركزي، أو بين MTBF وMTTR). اطلع على الملخصات التالية واقرأ فقرة <strong>«مصيدة الامتحان»</strong> بعناية.
-                    </p>
-                </div>
+        <!-- Tier 4: Micro-Quiz -->
+        <div class="sec-card space-y-4" id="quiz-m1">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-sky-600 ml-1"></i> التقييم الذاتي - الفصل الأول</h4>
+            <button onclick="resetQuiz('quiz-m1')" class="text-xs text-slate-500 hover:text-sky-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <!-- Q1 TF -->
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="false" data-expl="الصيانة تهدف لتقليل العطلات؛ لأن منع العطلات نهائياً بنسبة 100% هدف مثالي مستحيل التحقيق عملياً واقتصادياً.">
+            <p class="font-bold">1. تهدف الصيانة الحديثة إلى منع حدوث العطلات بشكل مطلق ونهائي بنسبة 100%.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <!-- Q2 MCQ -->
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="b" data-expl="ملف العاملين يختص ببيانات المهارات والأجور، بينما الموجودات للمواصفات الفنية، وتاريخ الماكنة لأعمال الصيانة السابقة.">
+            <p class="font-bold">2. أي ملفات CMMS يوثق فئات الفنيين وأجور ساعات عملهم الاعتيادية والإضافية؟</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) ملف الموجودات</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) ملف العاملين</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) ملف الأعمال القياسية</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) ملف تاريخ الماكنة</button>
             </div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Chapter 1 Summary -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-700 pb-3">
-                        <h4 class="text-lg font-bold text-blue-400">الفصل الأول: مدخل ومفاهيم الصيانة</h4>
-                        <span class="text-xs bg-blue-900/60 text-blue-300 px-2.5 py-1 rounded-full">أساسي</span>
-                    </div>
-                    <ul class="text-sm space-y-2.5 text-slate-300 list-disc list-inside">
-                        <li><strong>تعريف الصيانة:</strong> مجموعة الفعاليات الفنية والإدارية لحفظ الماكنة أو إعادتها لحالة التشغيل بأقل وقت وكلفة.</li>
-                        <li><strong>الهدف الواقعي:</strong> تقليل العطلات وليس منعها كلياً لأن المنع الكامل مثالي مستحيل التحقيق.</li>
-                        <li><strong>الصيانة الوقائية (PM):</strong> تجرى قبل توقف الماكنة مبرمجة ودورية (تزييت، تنظيف، فحص).</li>
-                        <li><strong>الصيانة العلاجية (CM):</strong> تجرى بعد حدوث العطل لإعادة الماكنة لحالة مقبولة.</li>
-                        <li><strong>الصيانة الظرفية (CBM):</strong> مراقبة مستمرة لخصائص معينة (اهتزازات، حرارة، لزوجة الزيت كيميائياً) قبل الفشل.</li>
-                    </ul>
-                    <div class="bg-rose-950/40 border-r-4 border-rose-500 p-3 rounded text-xs text-rose-200">
-                        ⚠️ <strong>مصيدة الامتحان:</strong> إذا جاءت عبارة "تهدف الصيانة إلى منع العطلات بصورة تامة ومطلقة" فالإجابة <strong>خطأ</strong>، لأن المنع الكامل مثالي.
-                    </div>
-                </div>
+        <!-- Tier 5: Pitfalls -->
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> محاذير امتحانية:</strong> لا تخلط بين ملف الموجودات (مواصفات شراء واندثار) وملف تاريخ الماكنة (سجل الأعطال الفعلية المصروفة سابقاً). واعلم أن CBM تشترط وجود مؤشر فيزيائي قابل للقياس والتحليل قبل وقوع الفشل.
+        </div>
+      </section>
 
-                <!-- Chapter 2 Summary -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-700 pb-3">
-                        <h4 class="text-lg font-bold text-indigo-400">الفصل الثاني: العطلات وتصنيفاتها</h4>
-                        <span class="text-xs bg-indigo-900/60 text-indigo-300 px-2.5 py-1 rounded-full">تصنيفات</span>
-                    </div>
-                    <ul class="text-sm space-y-2.5 text-slate-300 list-disc list-inside">
-                        <li><strong>العطلات الأولية (المبكرة):</strong> تحدث في بداية عمل الماكنة بسبب عيوب تصميم أو سوء استخدام وتقل مع مرور الوقت.</li>
-                        <li><strong>عطلات الاستهلاك (التقادم):</strong> تحدث نتيجة الاستخدام المتكرر وتزداد نسبتها بمرور الزمن.</li>
-                        <li><strong>العطلات العشوائية:</strong> صعبة التنبؤ وتحدث غالباً بسبب تحميل المكائن فوق طاقتها التصميمية.</li>
-                        <li><strong>مراحل تخطيط العطلات:</strong> الاكتشاف ⬅️ الأعمال ⬅️ التعلم (السبب الجذري) ⬅️ الخطط.</li>
-                    </ul>
-                    <div class="bg-rose-950/40 border-r-4 border-rose-500 p-3 rounded text-xs text-rose-200">
-                        ⚠️ <strong>مصيدة الامتحان:</strong> العطلات الدورية المتوقعة تعالج بالفحص والتفتيش المبرمج، بينما العطلات الدورية غير المتوقعة فخير علاج لها هو الصيانة العلاجية.
-                    </div>
-                </div>
+      <!-- MODULE 2 -->
+      <section id="module-2" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-indigo-600 text-white text-sm flex items-center justify-center">2</span>
+            الفصل الثاني: العطلات وتخطيطها ونماذج الاستعادة
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">النمذجة الرياضية</span>
+        </div>
 
-                <!-- Chapter 3 Summary -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-700 pb-3">
-                        <h4 class="text-lg font-bold text-cyan-400">الفصل الثالث: تخطيط أعمال الصيانة</h4>
-                        <span class="text-xs bg-cyan-900/60 text-cyan-300 px-2.5 py-1 rounded-full">إداري وتخطيطي</span>
-                    </div>
-                    <ul class="text-sm space-y-2.5 text-slate-300 list-disc list-inside">
-                        <li><strong>أمر العمل:</strong> الوثيقة القانونية والفنية التي تخول فني الصيانة البدء بالإجراء ومصدر حساب الكلف.</li>
-                        <li><strong>أولويات المكائن:</strong> (مكائن حرجة، مكائن مهمة، مكائن ذات أهمية معقولة، مكائن بديلة).</li>
-                        <li><strong>الجدول السنوي العام:</strong> مواعيده ملزمة ولا يجوز إلغاؤها أو تغييرها إلا بموافقة الإدارة العليا حصراً.</li>
-                        <li><strong>أعمال الصيانة:</strong> روتينية (يومية/دورية بسيطة) ومتخصصة (تحويرات واستبدال معقد).</li>
-                    </ul>
-                    <div class="bg-rose-950/40 border-r-4 border-rose-500 p-3 rounded text-xs text-rose-200">
-                        ⚠️ <strong>مصيدة الامتحان:</strong> لا يملك رئيس قسم الصيانة أو المشغل صلاحية إلغاء موعد في الجدول السنوي العام بمفرده دون موافقة الإدارة العليا.
-                    </div>
-                </div>
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-indigo-600"></i> تصنيف العطلات ومراحل التخطيط</h3>
+          <p><strong>العطل (Failure):</strong> عدم قدرة النظام أو المنتوج على أداء وظيفته المطلوبة لعيب تصميمي أو سوء تشغيل أو قصور بالمهارات. وتُصنف العطلات إلى: أولية مبكرة (تتناقص مع الوقت)، عطلات الاستهلاك والتقادم الطبيعي (تتزايد مع الزمن)، عطلات مفاجئة عشوائية (أحمال تفوق التصميم وتتبع قوانين الاحتمالات)، وعطلات جزئية أو كارثية (توقف الخط كلياً).</p>
+          <p><strong>تصنيف العطلات حسب أساليب الصيانة:</strong> (1) عشوائية متوقعة: تحتاج وقتاً لحدوثها وتعالج بالفحص والتفتيش المبرمج، (2) عشوائية غير متوقعة: تحدث فجأة وتعالج بالصيانة الاضطرارية، (3) دورية متوقعة: تحدث طبيعياً بالتقادم وتعالج بالصيانة الوقائية، (4) دورية غير متوقعة: تعالج بالصيانة العلاجية.</p>
+          <p><strong>المصادر الستة للعطلات:</strong> التصميم، التركيب والنصب، العاملين، نقص المواد والمعلومات، الزبائن، والإدارة (تقليص ميزانيات الصيانة، عقود رديئة، وإهمال الحوافز والتدريب). <strong>مراحل تخطيط العطل الأربع:</strong> اكتشف (تشخيص الواقعة) $\to$ اعمل (الاحتواء والإبلاغ) $\to$ تعلّم (السبب الجذري وهندسته خارجاً) $\to$ الخطط (تحديث إجراءات الاستجابة).</p>
+        </div>
 
-                <!-- Chapter 4 Summary -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-700 pb-3">
-                        <h4 class="text-lg font-bold text-emerald-400">الفصل الرابع: الهيكل التنظيمي للصيانة</h4>
-                        <span class="text-xs bg-emerald-900/60 text-emerald-300 px-2.5 py-1 rounded-full">تنظيم وهياكل</span>
-                    </div>
-                    <ul class="text-sm space-y-2.5 text-slate-300 list-disc list-inside">
-                        <li><strong>التنظيم:</strong> وسيلة وليس هدفاً بحد ذاته.</li>
-                        <li><strong>التنظيم المركزي:</strong> تكاليف أقل، استغلال أمثل للموارد، لكن يعيبه بطء الاتصال مع الإنتاج.</li>
-                        <li><strong>التنظيم اللامركزي:</strong> خدمة سريعة للإنتاج، انخفاض وقت الانتظار، لكن يعيبه ارتفاع التكاليف وتشتت الموارد.</li>
-                        <li><strong>التنظيم المصفوفي:</strong> يجمع بينهما؛ لكن يعيبه ازدواجية السلطة وتعدد الرؤساء وظهور النزاعات.</li>
-                    </ul>
-                    <div class="bg-rose-950/40 border-r-4 border-rose-500 p-3 rounded text-xs text-rose-200">
-                        ⚠️ <strong>مصيدة الامتحان:</strong> التنظيم التنفيذي (البسيط) يتميز بـ «قِلة» التخصص والإشراف المباشر، وليس بارتفاع التخصص.
-                    </div>
-                </div>
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-indigo-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> بطاقة القوانين - الفصل الثاني</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>المقياس</th><th>الصيغة الرياضية</th><th>البيان</th></tr>
+            <tr><td>العدد المتوقع للعطلات شهرياً</td><td>$$NF = \sum [F_i \times P(F_i)]$$</td><td>مجموع حاصل ضرب عدد العطلات في الاحتمال المقابل.</td></tr>
+            <tr><td>كلفة العطلات بلا صيانة وقائية</td><td>$$TC_{\text{No PM}} = NF \times \text{خسارة العطل الواحد}$$</td><td>الخسارة المادية المباشرة للعطلات المتوقعة.</td></tr>
+            <tr><td>كلفة الصيانة الوقائية</td><td>$$TC_{\text{PM}} = \text{كلفة العقد الشهري} + \text{الخسارة الأساسية}$$</td><td>مجموع كلفة العقد وخسارة العطل المحتومة.</td></tr>
+          </table>
+        </div>
 
-                <!-- Chapter 5 Summary -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-700 pb-3">
-                        <h4 class="text-lg font-bold text-amber-400">الفصل الخامس: تكاليف الصيانة</h4>
-                        <span class="text-xs bg-amber-900/60 text-amber-300 px-2.5 py-1 rounded-full">مالي ومحاسبي</span>
-                    </div>
-                    <ul class="text-sm space-y-2.5 text-slate-300 list-disc list-inside">
-                        <li><strong>الكلف المباشرة:</strong> أجور عمال الصيانة، المواد وقطع الغيار، معدات الورشة، الخدمات الخارجية.</li>
-                        <li><strong>الكلف غير المباشرة:</strong> أجور عمال الإنتاج العاطلين أثناء التوقف، خسائر الإنتاج التالف، غرامات التأخير.</li>
-                        <li><strong>سلوك التكاليف مع الزمن:</strong> في البداية تكاليف العلاجية أقل من الوقائية، ومع التقادم ترتفع العلاجية بشدة حتى تتجاوز الوقائية بعد نقطة التعادل.</li>
-                        <li><strong>تفضيل اليابانيين:</strong> يفضلون الصيانة الوقائية دائماً لتفادي الكلف غير الملموسة (السمعة، معنويات العمال).</li>
-                    </ul>
-                    <div class="bg-rose-950/40 border-r-4 border-rose-500 p-3 rounded text-xs text-rose-200">
-                        ⚠️ <strong>مصيدة الامتحان:</strong> أجور عمال "الإنتاج" أثناء توقف الماكنة هي كلفة <strong>غير مباشرة</strong> للصيانة، بينما أجور عمال "الصيانة" هي كلفة مباشرة.
-                    </div>
-                </div>
-
-                <!-- Chapter 7 & 8 Summary -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between border-b border-slate-700 pb-3">
-                        <h4 class="text-lg font-bold text-purple-400">الفصل السابع والثامن: المعولية و TPM</h4>
-                        <span class="text-xs bg-purple-900/60 text-purple-300 px-2.5 py-1 rounded-full">حديث ونظم</span>
-                    </div>
-                    <ul class="text-sm space-y-2.5 text-slate-300 list-disc list-inside">
-                        <li><strong>المعولية (Reliability):</strong> احتمالية عمل الماكنة دون فشل لفترة محددة في ظروف معيارية (قيمتها بين 0 و 1).</li>
-                        <li><strong>القابلية على الصيانة (Maintainability):</strong> السهولة التي يصلح بها المنتوج وتستبدل أجزاؤه.</li>
-                        <li><strong>الربط على التوالي:</strong> معولية النظام أقل من معولية أي جزء منفرد فيه. فشل أي جزء يفشل النظام ككل.</li>
-                        <li><strong>الصيانة الإنتاجية الشاملة (TPM):</strong> ظهرت عام 1971 بالمعهد الياباني. ترتكز على مشاركة الجميع والصيانة الذاتية لمشغلي المكائن.</li>
-                        <li><strong>السينات الخمس (5S):</strong> Seiri (تصفية/فرز), Seiton (ترتيب), Seiso (تنظيف), Seiketsu (تنميط/معايير), Shitsuke (انضباط ذاتي).</li>
-                    </ul>
-                    <div class="bg-rose-950/40 border-r-4 border-rose-500 p-3 rounded text-xs text-rose-200">
-                        ⚠️ <strong>مصيدة الامتحان:</strong> لا تخلط بين Seiri (التصفية وعزل غير الضروري) و Seiso (التنظيف ومسح الأوساخ).
-                    </div>
-                </div>
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p2')">
+            <span><i class="fa-solid fa-calculator text-indigo-600 ml-1"></i> مسألة محلولة (2-1): تقييم عقد الصيانة الوقائية لجهاز التحميض بالشركة اليابانية</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p2" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المعطيات:</strong> جهاز تحميض تم شراؤه منذ 10 أشهر، خسارة العطل الواحد = 150 ديناراً. عرض الصيانة الوقائية = 20 ديناراً/شهر. بيانات العطلات خلال 10 أشهر: 0 عطل (3 أشهر)، 1 عطل (3 أشهر)، 2 عطل (شهران)، 3 عطلات (شهران). هل ننصح بقبول العرض؟</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • الاحتمالات المقابلة: $P(0)=0.3, P(1)=0.3, P(2)=0.2, P(3)=0.2$.<br>
+              • $NF = (0 \times 0.3) + (1 \times 0.3) + (2 \times 0.2) + (3 \times 0.2) = 0 + 0.3 + 0.4 + 0.6 = 1.3 \text{ عطل/شهر}$.<br>
+              • الكلفة بدون صيانة وقائية = $1.3 \times 150 = 195 \text{ دينار/شهرياً}$.<br>
+              • كلفة الصيانة الوقائية = $150 + 20 = 170 \text{ دينار/شهرياً}$.
             </div>
-        </section>
+            <div class="decision-box">القرار والتوصية: ننصح بقبول عرض الصيانة الوقائية لأن كلفتها (170 ديناراً) أقل من كلفة الأعطال بدونها (195 ديناراً) محققة وفراً صافياً قدره 25 ديناراً شهرياً (300 دينار/سنة).</div>
+          </div>
+        </div>
 
-        <!-- TAB 3: FORMULAS & NUMERICAL EXERCISES -->
-        <section id="section-math" class="hidden space-y-8">
-            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6">
-                <h3 class="text-xl font-bold text-white mb-4 border-b border-slate-700 pb-3">
-                    📐 القوانين الرياضية الأساسية في مادة إدارة الصيانة
-                </h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Q formula -->
-                    <div class="bg-slate-900/90 p-5 rounded-xl border border-slate-800 space-y-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400">1. الحجم الأمثل للقوى العاملة للصيانة</span>
-                        <div class="text-center py-3 bg-slate-950 rounded-lg text-lg font-mono text-emerald-400">
-                            Q = F / (R - F)
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            • <strong>Q:</strong> معدل عدد الوحدات المنتظرة أو التي يتم إصلاحها.<br>
-                            • <strong>F:</strong> متوسط عدد العطلات.<br>
-                            • <strong>R:</strong> عدد الطلبات المنفذة في الساعة حسب عدد العمال.
-                        </p>
-                    </div>
-
-                    <!-- Reliability Series and Parallel -->
-                    <div class="bg-slate-900/90 p-5 rounded-xl border border-slate-800 space-y-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">2. نظم المعولية (توالي وتوازي)</span>
-                        <div class="text-center py-3 bg-slate-950 rounded-lg text-sm font-mono text-indigo-300 space-y-1">
-                            <div>التوالي: R<sub>s</sub> = R<sub>1</sub> × R<sub>2</sub> × ... × R<sub>n</sub></div>
-                            <div>التوازي: R<sub>p</sub> = 1 - [(1 - R<sub>1</sub>)(1 - R<sub>2</sub>)...]</div>
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            • في التوالي: إضافة أجزاء يقلل المعولية الكلية.<br>
-                            • في التوازي: إضافة أجزاء احتياطية يرفع المعولية الكلية للنظام.
-                        </p>
-                    </div>
-
-                    <!-- MTBF & MTTR -->
-                    <div class="bg-slate-900/90 p-5 rounded-xl border border-slate-800 space-y-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">3. مقاييس المعولية والإتاحية</span>
-                        <div class="text-center py-3 bg-slate-950 rounded-lg text-sm font-mono text-cyan-300 space-y-1">
-                            <div>MTBF = صافي وقت التشغيل ÷ عدد العطلات</div>
-                            <div>MTTR = مجموع أوقات الإصلاح ÷ عدد العطلات</div>
-                            <div>الإتاحية (Availability) = MTBF / (MTBF + MTTR)</div>
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            • الإتاحية تتناسب طردياً مع MTBF وعكسياً مع MTTR.
-                        </p>
-                    </div>
-
-                    <!-- Replacement -->
-                    <div class="bg-slate-900/90 p-5 rounded-xl border border-slate-800 space-y-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-amber-400">4. الاستبدال الدوري للوحدات المفاجئة</span>
-                        <div class="text-center py-3 bg-slate-950 rounded-lg text-sm font-mono text-amber-300">
-                            العمر المتوقع = Σ (العمر × الاحتمال)
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            • عدد العاطل = العدد الكلي ÷ العمر المتوقع.<br>
-                            • يقارن الاستبدال الفردي مع الاستبدال الجماعي لاختيار التكلفة الأقل والوفورات المالية.
-                        </p>
-                    </div>
-                </div>
+        <div class="sec-card space-y-4" id="quiz-m2">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-indigo-600 ml-1"></i> التقييم الذاتي - الفصل الثاني</h4>
+            <button onclick="resetQuiz('quiz-m2')" class="text-xs text-slate-500 hover:text-indigo-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="false" data-expl="العطلات العشوائية غير المتوقعة تحدث بلا سابق إنذار ويصعب برمجتها، لذا تعالج بالصيانة الاضطرارية الفورية.">
+            <p class="font-bold">1. الأسلوب الأمثل للتعامل مع العطلات العشوائية غير المتوقعة هو الصيانة الوقائية المبرمجة.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="c" data-expl="مرحلة التعلم تتضمن تشخيص السبب الجذري للعطل وهندسته خارج النظام لمنع تكراره.">
+            <p class="font-bold">2. المرحلة التي تتضمن إيجاد السبب الجذري وهندسة الأسباب خارج المنظومة تُسمى:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) اكتشف</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) اعمل</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) تعلّم</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) الخطط</button>
             </div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
 
-            <!-- Solved Interactive Case Study -->
-            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 space-y-4">
-                <h4 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
-                    <span>💡</span> مثال امتحاني تطبيقي: حساب الإتاحية ونسبة الفشل
-                </h4>
-                <div class="bg-slate-900 p-4 rounded-xl text-sm text-slate-300 space-y-2 border border-slate-800">
-                    <p><strong>المسألة:</strong> قامت شركة بتشغيل عينة من 30 جهازاً لمدة 500 ساعة. أثناء الاختبار تعطل الجهاز الأول 300 ساعة، والثاني 200 ساعة، والثالث 100 ساعة (أي 3 أعطال).</p>
-                    <div class="p-3 bg-slate-950 rounded-lg font-mono text-xs space-y-1 text-slate-200">
-                        <p>1. نسبة الفشل: FR(%) = 3 / 30 × 100 = 10%</p>
-                        <p>2. وقت التشغيل الكلي = 30 × 500 = 15,000 ساعة</p>
-                        <p>3. إجمالي وقت التوقف = 300 + 200 + 100 = 600 ساعة</p>
-                        <p>4. صافي التشغيل الفعلي = 15,000 - 600 = 14,400 ساعة</p>
-                        <p>5. FR(N) = 3 / 14,400 = 0.000208 فشل/ساعة</p>
-                        <p>6. MTBF = 1 / FR(N) = 14,400 / 3 = 4,800 ساعة</p>
-                    </div>
-                </div>
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> تنبيه امتحاني:</strong> تأكد من أن مجموع الاحتمالات يساوي واحداً صحيحاً دائماً ($\sum P = 1.0$) قبل الشروع في حساب $NF$.
+        </div>
+      </section>
+
+      <!-- MODULE 3 -->
+      <section id="module-3" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-teal-600 text-white text-sm flex items-center justify-center">3</span>
+            الفصل الثالث: تخطيط أعمال الصيانة وجدولتها ونماذج القوى العاملة
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-300">نظرية الصفوف</span>
+        </div>
+
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-calendar-check text-teal-600"></i> التخطيط ونظام الأولويات</h3>
+          <p><strong>خطة الصيانة:</strong> برامج تفصيلية لاحتياجات الشركة من أعمال الصيانة موزعة حسب الأقسام ضمن جدول زمني منتظم. أهدافها: الاستفادة القصوى من الطاقات، تخفيض استهلاك الموارد، زيادة إنتاجية العمل، ضمان جودة الإنتاج، وخفض التكاليف الكلية.</p>
+          <p><strong>المستلزمات الخمسة للتخطيط:</strong> (1) قائمة المكائن ومواقعها وترميزها، (2) سجل الماكنة الفني، (3) جدول أعمال الصيانة والبرنامج الزمني، (4) التقارير الفنية (إتمام العمل، حالة الماكنة، التكلفة، وتاريخ المعدة)، و(5) أمر العمل. <strong>تصنيف أولويات المكائن:</strong> حرجة (Critical)، مهمة (Important)، أهمية معقولة، وبديلة (Standby). <strong>مبادئ الجدول السنوي العام الخمسة:</strong> التوافق مع خطط الإنتاج (المواعيد ملزمة ولا تلغى إلا بموافقة الإدارة العليا)، استثمار العطل الرسمية، توازن عبء عمل الفنيين، تخصيص أيام محددة شهرياً، وشمولية كافة أصول المنشأة.</p>
+        </div>
+
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-teal-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> بطاقة القوانين - نموذج الصفوف وحجم القوى العاملة</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>المقياس</th><th>الصيغة</th><th>البيان</th></tr>
+            <tr><td>عدد المكائن قيد التوقف والإصلاح</td><td>$$Q = \frac{F}{R - F}$$</td><td>$F$: متوسط عدد العطلات بالساعة، $R$: معدل الخدمة والإصلاح بالساعة ($R > F$).</td></tr>
+            <tr><td>الكلفة الكلية المشتركة بالساعة</td><td>$$TC = (Q \times C_d) + (N \times W)$$</td><td>$C_d$: كلفة توقف الماكنة بالساعة، $N$: عدد العمال، $W$: أجر العامل بالساعة.</td></tr>
+          </table>
+        </div>
+
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p3')">
+            <span><i class="fa-solid fa-calculator text-teal-600 ml-1"></i> مسألة محلولة (3-1): تحديد الحجم الأمثل لطاقم عمال الصيانة بنموذج الصفوف</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p3" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المعطيات:</strong> متوسط العطلات $F = 3$ عطل/ساعة. كلفة توقف الماكنة = 150 ديناراً/ساعة. أجر العامل الواحد = 20 ديناراً/ساعة. طاقة الخدمة: عامل واحد يخدم 5 مكائن ($R_1=5$)، عاملان يخدمان 6 مكائن ($R_2=6$)، 3 عمال يخدمون 8 مكائن ($R_3=8$). احسب الحجم الأمثل للقوى العاملة.</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • خيار (1 عامل): $Q = \frac{3}{5-3} = 1.5 \text{ ماكنة}$. $TC = (1.5 \times 150) + (1 \times 20) = 225 + 20 = \mathbf{245 \text{ دينار/ساعة}}$.<br>
+              • خيار (2 عمال): $Q = \frac{3}{6-3} = 1.0 \text{ ماكنة}$. $TC = (1.0 \times 150) + (2 \times 20) = 150 + 40 = \mathbf{190 \text{ دينار/ساعة}}$.<br>
+              • خيار (3 عمال): $Q = \frac{3}{8-3} = 0.6 \text{ ماكنة}$. $TC = (0.6 \times 150) + (3 \times 20) = 90 + 60 = \mathbf{150 \text{ دينار/ساعة}}$.
             </div>
-        </section>
+            <div class="decision-box">القرار والتوصية: تشغيل طاقم مكون من 3 عمال صيانة هو الخيار الأمثل اقتصادياً لتحقيقه أدنى تكلفة كلية (150 ديناراً/ساعة) وتوفيره 95 ديناراً بالساعة مقارنة بعامل واحد.</div>
+          </div>
+        </div>
 
-        <!-- TAB 4: PROMPT ENGINEERING SUITE -->
-        <section id="section-prompts" class="hidden space-y-6">
-            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 space-y-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-purple-600/30 text-purple-400 flex items-center justify-center font-bold text-xl border border-purple-500/30">
-                        🧠
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white">حقيبة أوامر الذكاء الاصطناعي للدراسة التفاعلية</h3>
-                        <p class="text-xs text-slate-400">أوامر مهندسة بدقة فائقة (مع إسناد الدور، سلسلة الفكر، وتقنية السياق المرجعي) لاستخراج أقصى فائدة دراسية</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
-                    <!-- Prompt 1 -->
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex flex-col justify-between gap-4">
-                        <div>
-                            <span class="text-xs bg-blue-900/60 text-blue-300 px-2 py-0.5 rounded font-semibold">أمر 1: المحاكي السقراطي للامتحان الشفوي</span>
-                            <h4 class="text-sm font-bold text-white mt-2">اختبار المناقشة العميقة واستخراج الأخطاء</h4>
-                            <p class="text-xs text-slate-400 mt-1">يجعل الذكاء الاصطناعي يطرح عليك عبارة واحدة صح أو خطأ في إدارة الصيانة، وينتظر إجابتك ليناقش معك السند العلمي والتعليل قبل الانتقال للتالي.</p>
-                        </div>
-                        <button onclick="copyPrompt('prompt1')" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-bold border border-slate-700 transition flex items-center justify-center gap-2">
-                            <span>📋</span> نسخ البرومبت
-                        </button>
-                    </div>
-
-                    <!-- Prompt 2 -->
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex flex-col justify-between gap-4">
-                        <div>
-                            <span class="text-xs bg-emerald-900/60 text-emerald-300 px-2 py-0.5 rounded font-semibold">أمر 2: مولد المسائل الحسابية خطوة بخطوة</span>
-                            <h4 class="text-sm font-bold text-white mt-2">توليد تمارين وحسابات المعولية والاستبدال</h4>
-                            <p class="text-xs text-slate-400 mt-1">يولد مسائل حسابية بأرقام جديدة لقوانين MTBF وMTTR والاستبدال الجماعي، مع إخفاء الحل حتى تقوم بالمحاولة، ثم يقدم خطوات الحل التفصيلية.</p>
-                        </div>
-                        <button onclick="copyPrompt('prompt2')" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-bold border border-slate-700 transition flex items-center justify-center gap-2">
-                            <span>📋</span> نسخ البرومبت
-                        </button>
-                    </div>
-
-                    <!-- Prompt 3 -->
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex flex-col justify-between gap-4">
-                        <div>
-                            <span class="text-xs bg-amber-900/60 text-amber-300 px-2 py-0.5 rounded font-semibold">أمر 3: صائد الفروقات الدقيقة والمصائد</span>
-                            <h4 class="text-sm font-bold text-white mt-2">استخراج الجمل الملتبسة في الامتحانات</h4>
-                            <p class="text-xs text-slate-400 mt-1">يستخرج 10 مقارنات محيرة بين المفاهيم المتشابهة (مثل الصيانة العلاجية والطارئة، وفحص عام ومتخصص) ويبين مفتاح الإجابة السريع.</p>
-                        </div>
-                        <button onclick="copyPrompt('prompt3')" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-bold border border-slate-700 transition flex items-center justify-center gap-2">
-                            <span>📋</span> نسخ البرومبت
-                        </button>
-                    </div>
-
-                    <!-- Prompt 4 -->
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 flex flex-col justify-between gap-4">
-                        <div>
-                            <span class="text-xs bg-purple-900/60 text-purple-300 px-2 py-0.5 rounded font-semibold">أمر 4: تلخيص كروت الاستذكار السريع (Flashcards)</span>
-                            <h4 class="text-sm font-bold text-white mt-2">مراجعة ليلة الامتحان في 15 دقيقة</h4>
-                            <p class="text-xs text-slate-400 mt-1">ينشئ جدول بطاقات مكثفة جداً: (المصطلح ⬅️ التعريف الجوهري في 5 كلمات ⬅️ العبارة الخاطئة الشائعة عنه).</p>
-                        </div>
-                        <button onclick="copyPrompt('prompt4')" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-bold border border-slate-700 transition flex items-center justify-center gap-2">
-                            <span>📋</span> نسخ البرومبت
-                        </button>
-                    </div>
-                </div>
+        <div class="sec-card space-y-4" id="quiz-m3">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-teal-600 ml-1"></i> التقييم الذاتي - الفصل الثالث</h4>
+            <button onclick="resetQuiz('quiz-m3')" class="text-xs text-slate-500 hover:text-teal-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="false" data-expl="مواعيد جدول الصيانة السنوي ملزمة تماماً ولا يجوز تعديلها أو إلغاؤها إلا بموافقة رسمية من الإدارة العليا.">
+            <p class="font-bold">1. يجوز لمدير قسم الإنتاج إلغاء مواعيد الصيانة المبرمجة دون موافقة الإدارة العليا.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="a" data-expl="بموجب القانون Q = F / (R - F) = 2 / (4 - 2) = 2 / 2 = 1.0 ماكنة.">
+            <p class="font-bold">2. إذا كان معدل العطلات F = 2 ومعدل الخدمة R = 4، فإن متوسط عدد المكائن قيد التعطل Q هو:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) 1.0 ماكنة</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) 0.5 ماكنة</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) 2.0 ماكنة</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) 1.5 ماكنة</button>
             </div>
-        </section>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> فخ حسابي:</strong> عند حساب كلفة أجور العمال احرص على ضرب أجر الساعة في عدد العمال بالطاقم ($N \times W$) ولا تضربه في $Q$.
+        </div>
+      </section>
+
+      <!-- MODULE 4 -->
+      <section id="module-4" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-amber-600 text-white text-sm flex items-center justify-center">4</span>
+            الفصل الرابع: الهيكل التنظيمي لإدارة الصيانة وتصميم الورش
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">الهندسة التنظيمية</span>
+        </div>
+
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-sitemap text-amber-600"></i> النماذج التنظيمية والاشتراطات الهندسية للورش</h3>
+          <p><strong>الهيكل التنظيمي:</strong> شبكة اتصالات وصلاحيات تربط الأفراد والمجاميع لتنفيذ المهام. يبرز بعدين: مادي ملموس (المواقع وخطوط السلطة بالخريطة التنظيمية)، وسلوكي (التفاعل والاتصال اليومي). قاعدة القرب: النشاطات ذات الموارد الضخمة أو المؤثرة على الأرباح توضع أقرب للإدارة العليا.</p>
+          <p><strong>النماذج الثلاثة لتنظيم الصيانة:</strong> (1) المركزي: انخفاض التكاليف وتنوع مهارات الفنيين، لكن يعيبه بطء الاستجابة واحتكاكات مع الإنتاج، (2) اللامركزي: سرعة الاستجابة وخدمة الإنتاج المباشرة، لكنه مكلف ويشتت الموارد، (3) المصفوفي: انسياب مزدوج للسلطة ويجمع مزايا النموذجين للمصانع الكبرى، لكنه قد يسبب صراعات إدارية.</p>
+          <p><strong>ورش الصيانة:</strong> مركزية (كبيرة وشاملة)، وفرعية (ثابتة أو متنقلة ملحقة بالأقسام). <strong>الاشتراطات الهندسية الخمسة لتصميم الورشة:</strong> نوافذ $\ge 25\%$ من مساحة الأرضية للتهوية والإضاءة الطبيعية، اشتراطات مكافحة الحرائق والسلامة، توفير شبكات المنافع (هواء مضغوط، كهرباء، ماء)، ممرات نقل آمنة للرافعات، وقرب الموقع من خطوط الإنتاج مع مساحات انسيابية كافية.</p>
+        </div>
+
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-amber-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> المعيار الهندسي للموقع والورشة</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>المحدد</th><th>المعادلة المعيارية</th><th>التطبيق</th></tr>
+            <tr><td>المساحة الدنيا لنوافذ الورشة</td><td>$$A_{\text{windows}} \ge 0.25 \times A_{\text{floor}}$$</td><td>مساحة النوافذ $\ge 25\%$ من مساحة الأرضية لضمان التهوية والإنارة.</td></tr>
+          </table>
+        </div>
+
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p4')">
+            <span><i class="fa-solid fa-calculator text-amber-600 ml-1"></i> مسألة محلولة (4-1): تدقيق مطابقة مساحة نوافذ ورشة صيانة للاشتراطات الهندسية</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p4" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المسألة:</strong> ورشة صيانة مركزية أبعاد أرضيتها $40 \text{ m} \times 20 \text{ m}$. صمم المعماري 10 نوافذ أبعاد الواحدة $2 \text{ m} \times 3 \text{ m}$. هل التصميم مطابق هندسياً لمعيار الـ 25%؟ وما التعديل المطلوب؟</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • مساحة الأرضية: $A_{\text{floor}} = 40 \times 20 = 800 \text{ m}^2$.<br>
+              • المساحة الدنيا المطلوبة للنوافذ (25%): $0.25 \times 800 = \mathbf{200 \text{ m}^2}$.<br>
+              • المساحة الحالية المقترحة: $10 \times (2 \times 3) = 60 \text{ m}^2$ (تمثل 7.5% فقط).
+            </div>
+            <div class="decision-box">القرار: التصميم مرفوض لعدم مطابقته معايير السلامة المهنية، ويجب إضافة نوافذ أو فتحات سقفية بمساحة لا تقل عن $140 \text{ m}^2$ لبلوغ الحد الأدنى ($200 \text{ m}^2$).</div>
+          </div>
+        </div>
+
+        <div class="sec-card space-y-4" id="quiz-m4">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-amber-600 ml-1"></i> التقييم الذاتي - الفصل الرابع</h4>
+            <button onclick="resetQuiz('quiz-m4')" class="text-xs text-slate-500 hover:text-amber-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="true" data-expl="الهيكل المصفوفي يجمع بين التبعية الوظيفية لإدارة الصيانة والتبعية التشغيلية لإدارة الإنتاج (انسياب مزدوج).">
+            <p class="font-bold">1. يتميز الهيكل التنظيمي المصفوفي بوجود انسياب مزدوج للسلطة وتعدد الرؤساء.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="d" data-expl="المعيار الهندسي الصارم المعتمد يشترط ألا تقل مساحة النوافذ عن 25% من مساحة الأرضية.">
+            <p class="font-bold">2. الحد الأدنى المعياري لمساحة نوافذ ورشة الصيانة من مساحة الأرضية هو:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) 10%</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) 15%</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) 20%</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) 25%</button>
+            </div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> تنبيه:</strong> نسبة الـ 25% تُحسب كنسبة من مساحة <em>أرضية الورشة</em> وليس من مساحة الجدران.
+        </div>
+      </section>
+
+      <!-- MODULE 5 -->
+      <section id="module-5" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-rose-600 text-white text-sm flex items-center justify-center">5</span>
+            الفصل الخامس: تكاليف الصيانة والميزانية التقديرية
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300">هندسة التكاليف</span>
+        </div>
+
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-coins text-rose-600"></i> التكاليف المباشرة وغير المباشرة والميزانية</h3>
+          <p><strong>دلالة انخفاض التكلفة:</strong> قد يكون مؤشراً سلبياً إذا نتج عن إهمال الصيانة وتراكم الاستهلاك، ويكون إيجابياً إذا تحقق عبر التخطيط والوقاية.</p>
+          <p><strong>التكاليف المباشرة:</strong> مواد وقطع غيار وزيوت، معدات الصيانة، أجور فنيي الصيانة المباشرين، كلفة الخدمات الخارجية (مبرراتها: غياب الخبرة، قلة الإمكانيات، انخفاض التكاليف الخارجية، أو ضيق الوقت)، التحوير وإعادة التصميم، والمصاريف الإدارية. <strong>التكاليف غير المباشرة:</strong> خسارة الإنتاج والمبيعات المفقودة، أجور عمال الإنتاج المعطلين، المواد التالفة تحت التصنيع (WIP)، وغرامات التأخير.</p>
+          <p><strong>المنحنى والمفاضلة:</strong> تتقاطع تكاليف PM الثابتة مع تكاليف CM المتزايدة في <strong>نقطة التعادل</strong> التي تحقق الكلفة الكلية الأدنى. والنظرة اليابانية تفضل الوقائية دائماً لتجنب التكاليف غير الملموسة (المعنويات، السمعة، والولاء). <strong>خطوات الميزانية الثماني:</strong> حصر قطع الغيار، حصر العمالة، تقدير تكاليفهما التاريخية، تخمين التكاليف غير المباشرة، مراعاة قرارات التوسع والاستبدال، استبعاد مخصصات الصيانة الخارجية، المصادقة عبر لجان متخصصة، والتقارير الشهرية لمتابعة الانحرافات. <strong>استراتيجيات خفض التكلفة الخمس:</strong> مراقبة الإضافي، تحليل باريتو (ABC) للأجزاء الأغلى، التصنيع الداخلي للقطع مقارنة بالمجهز الأصلي، تدريب المشغلين، وضبط التزييت.</p>
+        </div>
+
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-rose-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> بطاقة التكاليف - الفصل الخامس</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>البند</th><th>المعادلة</th><th>البيان</th></tr>
+            <tr><td>التكلفة الإجمالية للعطل</td><td>$$TC_{\text{event}} = C_{\text{Direct}} + C_{\text{Indirect}}$$</td><td>مجموع تكاليف الإصلاح المباشر مع تكاليف التوقف والخسائر.</td></tr>
+            <tr><td>كلفة العمال المعطلين</td><td>$$C_{\text{Idle}} = \text{Workers} \times \text{Hours} \times \text{Wage}$$</td><td>أجور عمال الإنتاج المتوقفين بسبب العطل (كلفة غير مباشرة).</td></tr>
+          </table>
+        </div>
+
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p5')">
+            <span><i class="fa-solid fa-calculator text-rose-600 ml-1"></i> مسألة محلولة (5-1): تحليل التكاليف المباشرة وغير المباشرة لحادث توقف ماكنة تفريز</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p5" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المسألة:</strong> توقفت ماكنة 6 ساعات. كلفة الإصلاح: مسنن 120 ديناراً، 10 لترات زيت (5 دنانير/لتر)، عمل فنيين اثنين لمدة 6 ساعات بأجر 15 ديناراً/ساعة لكل فني. تسبب العطل بتعطل 4 عمال إنتاج طيلة 6 ساعات (أجر العامل الإنتاجي 8 دنانير/ساعة)، وتلف 50 قطعة مواد تحت التصنيع كلفتها 4 دنانير للقطعة، وخسارة أرباح مبيعات مفقودة 200 دينار. احسب التكاليف المباشرة وغير المباشرة والإجمالية.</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • التكاليف المباشرة: قطع وزيوت = $120 + 50 = 170$. أجور الفنيين = $2 \times 6 \times 15 = 180$. المجموع المباشر = $\mathbf{350 \text{ دينار}}$.<br>
+              • التكاليف غير المباشرة: عمال الإنتاج المعطلين = $4 \times 6 \times 8 = 192$. تلف المواد = $50 \times 4 = 200$. أرباح مفقودة = 200. المجموع غير المباشر = $\mathbf{592 \text{ دينار}}$.<br>
+              • الكلفة الكلية الإجمالية للحادث = $350 + 592 = \mathbf{942 \text{ دينار}}$.
+            </div>
+            <div class="decision-box">الاستنتاج التحليلي: التكاليف غير المباشرة (592 ديناراً) تشكل 63% من إجمالي الخسارة، وهي أضخم بكثير من تكاليف الإصلاح المباشرة (350 ديناراً).</div>
+          </div>
+        </div>
+
+        <div class="sec-card space-y-4" id="quiz-m5">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-rose-600 ml-1"></i> التقييم الذاتي - الفصل الخامس</h4>
+            <button onclick="resetQuiz('quiz-m5')" class="text-xs text-slate-500 hover:text-rose-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="true" data-expl="صحيح، لأن الانخفاض قد يعكس غياب الصيانة وإهمال التجهيزات الذي يقود لكارثة تشغيلية لاحقة.">
+            <p class="font-bold">1. قد يكون انخفاض تكاليف الصيانة في سنة ما مؤشراً سلبياً وخطيراً على المنشأة.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="b" data-expl="أجور عمال الإنتاج المعطلين بسبب توقف الماكنة هي كلفة غير مباشرة لأنها خسارة تعطيل إنتاج.">
+            <p class="font-bold">2. أجور عمال خط الإنتاج الذين توقفوا عن العمل بسبب تعطل الماكنة تصنف ضمن:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) تكاليف الصيانة المباشرة</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) تكاليف الصيانة غير المباشرة</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) كلف التحوير الهندسي</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) كلف الخدمات الخارجية</button>
+            </div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> تنبيه لإعداد الميزانية:</strong> يجب استبعاد مخصصات عقود الصيانة الخارجية من الميزانية التشغيلية لأقسام الصيانة الداخلية لمنع ازدواجية الصرف.
+        </div>
+      </section>
+
+      <!-- MODULE 6 -->
+      <section id="module-6" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-purple-600 text-white text-sm flex items-center justify-center">6</span>
+            الفصل السادس: نماذج وقرارات الاستبدال الاقتصادي
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300">الاقتصاد الهندسي</span>
+        </div>
+
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-arrows-rotate text-purple-600"></i> مفهوم الاستبدال ونماذجه الرياضية</h3>
+          <p><strong>الاستبدال (Replacement):</strong> قرار استبدال ماكنة أو جزء عاطل أو متوقع عطله بآخر حديث لتقليل التكاليف وضمان الاستمرارية. أسبابه الستة: تزايد تكاليف الصيانة والتشغيل، تقادم الأصول، تلف جسيم بأجزاء رئيسية، الضوضاء والاهتزازات، ظهور تكنولوجيا حديثة متفوقة، وتوحيد مناشئ المكائن.</p>
+          <p><strong>النموذج الأول (المعدات متناقصة الكفاءة تدريجياً كالسيارات):</strong> يُحل بـ: (أ) <em>الطريقة الجدولية</em>: حساب الاندثار (السعر - القيمة التجارية) + متراكم الصيانة، والقسمة على العمر لإيجاد معدل التكاليف الكلية، (ب) <em>طريقة صافي القيمة الحالية (NPV)</em>: باستخدام معامل الخصم $R = \frac{1}{(1+i)^n}$ لحساب القيم الحالية للاندثار والصيانة. وتتميز NPV بأنها تطيل العمر الاقتصادي للمعدة بأخذ القيمة الزمنية للنقود.</p>
+          <p><strong>النموذج الثاني (المعدات التي تتلف كلياً وفجائياً كالمصابيح):</strong> المفاضلة بين: (أ) <em>الاستبدال الفردي</em>: $E(t) = \sum t \cdot P(t)$، التوالف شهرياً = $N_0 / E(t)$، (ب) <em>الاستبدال الجماعي</em>: استبدال جماعي شامل دورياً مع استبدال فردي فوري للتوالف اليومية $n_t$.</p>
+        </div>
+
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-purple-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> بطاقة القوانين - الفصل السادس</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>القانون</th><th>الصيغة</th><th>البيان</th></tr>
+            <tr><td>معامل الخصم (NPV)</td><td>$$R = \frac{1}{(1 + i)^n}$$</td><td>$i$: سعر الخصم، $n$: السنة (تؤخذ 3 مراتب بعد الفارزة).</td></tr>
+            <tr><td>العمر المتوقع للتالف فجأة</td><td>$$E(t) = \sum [t \times P(t)]$$</td><td>متوسط العمر التشغيلي بالأشهر للوحدات كالمصابيح.</td></tr>
+            <tr><td>تتابع العطلات المتراكمة</td><td>$$n_t = \sum_{j=1}^t (n_{t-j} \times p_j)$$</td><td>حساب تراكم التوالف في سياسة الاستبدال الجماعي.</td></tr>
+          </table>
+        </div>
+
+        <!-- Problem 6-1: Truck -->
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p6-1')">
+            <span><i class="fa-solid fa-calculator text-purple-600 ml-1"></i> مسألة محلولة (6-1): استبدال شاحنة نقل (15,000 دينار) - جدولياً وبطريقة NPV ($i=10\%$)</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p6-1" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المعطيات:</strong> سعر الشاحنة = 15,000 دينار. كلف الصيانة للسنوات 1-6: 200، 450، 680، 850، 1300، 1600. القيمة التجارية: 10000، 8000، 7000، 5000، 2000، 1000. سعر الخصم = 10% ($R_1=0.909, R_2=0.826, R_3=0.751, R_4=0.683, R_5=0.620, R_6=0.564$).</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded overflow-x-auto">
+              • نتائج الطريقة الجدولية (معدل التكاليف الكلية):<br>
+              س1: 5200 | س2: 3825 | س3: 3110 | <strong>س4: 3045 (أدنى كلفة)</strong> | س5: 3296 | س6: 3180.<br>
+              $\implies$ في الطريقة الجدولية: الاستبدال الأمثل في <strong>نهاية السنة الرابعة</strong>.<br><br>
+              • نتائج طريقة صافي القيمة الحالية (NPV) (معدل التكاليف المخصومة):<br>
+              س1: 6092 | س2: 4465 | س3: 3581 | س4: 3269 | س5: 3184 | <strong>س6: 2884 (أدنى كلفة)</strong>.<br>
+              $\implies$ في طريقة NPV: الاستبدال الأمثل في <strong>نهاية السنة السادسة</strong>.
+            </div>
+            <div class="decision-box">التعليق الهندسي المقارن: طريقة صافي القيمة الحالية (NPV) أطالت العمر الاقتصادي للشاحنة بسنتين إضافيتين (حتى السنة السادسة بدلاً من الرابعة) بسبب خصم التدفقات النقدية المستقبلية بالقيمة الزمنية للنقود.</div>
+          </div>
+        </div>
+
+        <!-- Problem 6-2: Lamps -->
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p6-2')">
+            <span><i class="fa-solid fa-calculator text-purple-600 ml-1"></i> مسألة محلولة (6-2): المفاضلة بين الاستبدال الفردي والجماعي لـ 1,000 مصباح حراري</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p6-2" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المعطيات:</strong> 1,000 مصباح. كلفة الاستبدال الفردي = 40 ديناراً. كلفة الاستبدال الجماعي = 5,000 دينار (5 دنانير/مصباح). احتمالات التلف للأشهر 1-6: 0.05، 0.10، 0.15، 0.30، 0.20، 0.20.</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • الاستبدال الفردي: $E(t) = (1 \times 0.05) + (2 \times 0.1) + (3 \times 0.15) + (4 \times 0.3) + (5 \times 0.2) + (6 \times 0.2) = 4.1 \text{ شهر}$.<br>
+              التوالف شهرياً = $1000 / 4.1 \approx 244 \text{ مصباح}$. الكلفة الفردية = $244 \times 40 = \mathbf{9,760 \text{ دينار/شهرياً}}$.<br><br>
+              • الاستبدال الجماعي (تتابع التوالف): $n_1=50, n_2=103, n_3=160, n_4=326, n_5=263, n_6=311$.<br>
+              - الشهر 1: $(5000 + (50 \times 40)) / 1 = 7,000 \text{ دينار}$.<br>
+              - <strong>الشهر 2: $(5000 + ((50+103) \times 40)) / 2 = \mathbf{5,560 \text{ دينار (أدنى كلفة)}}$.</strong><br>
+              - الشهر 3: $(5000 + ((153+160) \times 40)) / 3 = 5,840 \text{ دينار}$.<br>
+              - الشهر 4: 7,640 | الشهر 5: 8,216 | الشهر 6: 8,920 دينار.
+            </div>
+            <div class="decision-box">القرار: اعتماد سياسة الاستبدال الجماعي كل شهرين (الشهر الثاني بكلفة 5,560 ديناراً) تحقق وفراً شهرياً هائلاً قدره $9,760 - 5,560 = \mathbf{4,200 \text{ دينار/شهرياً}}$ (وفر 43%).</div>
+          </div>
+        </div>
+
+        <div class="sec-card space-y-4" id="quiz-m6">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-purple-600 ml-1"></i> التقييم الذاتي - الفصل السادس</h4>
+            <button onclick="resetQuiz('quiz-m6')" class="text-xs text-slate-500 hover:text-purple-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="true" data-expl="صحيح، لأن أخذ القيمة الزمنية للنقود عبر سعر الخصم يخفض القيمة الحالية لكلف الصيانة اللاحقة.">
+            <p class="font-bold">1. تؤدي طريقة صافي القيمة الحالية (NPV) إلى إطالة العمر الاقتصادي للمعدة مقارنة بالطريقة الجدولية.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="b" data-expl="الاستبدال الجماعي في الشهر الثاني كلف 5560 ديناراً مقارنة بالفردي 9760، والوفر = 9760 - 5560 = 4200 دينار.">
+            <p class="font-bold">2. في مسألة المصابيح الحرارية، بلغ الوفر المالي الشهري لسياسة الاستبدال الجماعي مقارنة بالفردي:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) 2,100 دينار</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) 4,200 دينار</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) 1,500 دينار</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) 3,200 دينار</button>
+            </div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> تنبيه حسابي:</strong> في الاستبدال الجماعي، تذكر جمع كافة التوالف من الشهر الأول حتى الشهر $t$ عند حساب بسط كلفة الشهر $t$.
+        </div>
+      </section>
+
+      <!-- MODULE 7 -->
+      <section id="module-7" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-cyan-600 text-white text-sm flex items-center justify-center">7</span>
+            الفصل السابع: نظرية ومقاييس المعولية (Reliability)
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-300">هندسة الموثوقية</span>
+        </div>
+
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-cyan-600"></i> مفهوم المعولية ونظم الربط</h3>
+          <p><strong>المعولية (Reliability):</strong> احتمالية أداء الماكنة لغرضها المحدد في ظل ظروف تشغيلية وبيئية محددة وخلال فترة زمنية محددة دون فشل. عناصرها الأربعة: الاحتمالية الرقمية ($0 \le R \le 1$)، الأداء المطلوب، وقت التشغيل والعمر، والظروف البيئية المحيطة.</p>
+          <p><strong>هندسة ربط النظم:</strong> (1) <strong>التوالي (Series):</strong> $R_s = \prod R_i$؛ يشترط سلامة كل جزء، وتتدهور المعولية بازدياد الأجزاء وتكون أدنى من أضعف جزء، (2) <strong>التوازي (Parallel):</strong> $R_p = 1 - \prod (1 - R_i)$؛ تضمن استمرار العمل بفضل المسارات الاحتياطية وتفوق معولية أي جزء منفرد، (3) <strong>المختلط (Mixed):</strong> دمج التوالي والتوازي لتدعيم الأجزاء الحرجة الأضعف ($R_m = R_s \times R_p$).</p>
+          <p><strong>المقاييس الخمسة:</strong> نسبة الفشل $FR(\%) = \frac{NOF}{NUT} \times 100$، معدل الفشل بالساعة $FR(n) = \frac{NOF}{NOT}$، متوسط الوقت بين العطلات $MTBF = \frac{NOT}{NOF} = \frac{1}{FR(n)}$، متوسط وقت الإصلاح $MTTR = \frac{\sum Downtime}{NOF}$، والإتاحية $\text{Availability} = \frac{MTBF}{MTBF + MTTR}$.</p>
+        </div>
+
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-cyan-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> بطاقة القوانين - الفصل السابع</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>المقياس</th><th>الصيغة</th><th>البيان</th></tr>
+            <tr><td>ربط التوالي والتوازي</td><td>$$R_s = \prod R_i \quad | \quad R_p = 1 - \prod(1 - R_i)$$</td><td>تدهور التوالي مقابل تعاظم التوازي.</td></tr>
+            <tr><td>صافي وقت التشغيل</td><td>$$NOT = (\text{Units} \times \text{Hours}) - \sum \text{Downtime}$$</td><td>إجمالي الساعات مطروحاً منها كافة ساعات التوقف.</td></tr>
+            <tr><td>الإتاحية (Availability)</td><td>$$\text{Availability} = \frac{MTBF}{MTBF + MTTR}$$</td><td>نسبة الجاهزية التشغيلية للماكنة.</td></tr>
+          </table>
+        </div>
+
+        <!-- Problem 7-1: Reliability configs -->
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p7-1')">
+            <span><i class="fa-solid fa-calculator text-cyan-600 ml-1"></i> مسألة محلولة (7-1): حساب معولية منتوج وإضافة وحدات احتياطية متوازية</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p7-1" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المعطيات:</strong> منتوج يتألف من 3 مكونات: $R_1=0.96, R_2=0.97, R_3=0.90$. احسب: (1) معولية النظام ككل، (2) معولية النظام عند إضافة جزئين احتياط متوازيين للمكون الثالث معولية كل منهما 0.90.</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              1. معولية النظام على التوالي: $R_s = 0.96 \times 0.97 \times 0.90 = \mathbf{0.838}$.<br>
+              2. معولية المكون الثالث بعد الدعم الاحتياطي:<br>
+              $R_3' = 1 - (1 - 0.90)(1 - 0.90)(1 - 0.90) = 1 - (0.1 \times 0.1 \times 0.1) = 1 - 0.001 = \mathbf{0.999}$.<br>
+              3. معولية النظام الكلية الجديدة: $R_{\text{new}} = 0.96 \times 0.97 \times 0.999 = \mathbf{0.930}$ (قفزت من 0.838 إلى 0.930).
+            </div>
+            <div class="decision-box">الاستنتاج: تدعيم الجزء الأضعف في السلسلة بوحدات توازي احتياطية يرفع المعولية الإجمالية للمنتوج لأعلى مستوى بأقل تكلفة استثمارية.</div>
+          </div>
+        </div>
+
+        <!-- Problem 7-2: 30 Chillers -->
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p7-2')">
+            <span><i class="fa-solid fa-calculator text-cyan-600 ml-1"></i> مسألة محلولة (7-2): اختبار 30 جهاز تبريد واحتساب المقاييس الخمسة</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p7-2" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المعطيات:</strong> فحص 30 جهاز تبريد ($NUT=30$) لمدة 500 ساعة. أثناء الاختبار توقف جهاز لمدة 300 ساعة، وجهاز ثانٍ لمدة 200 ساعة، وجهاز ثالث لمدة 100 ساعة. احسب: $FR(\%), FR(n), MTBF, MTTR, \text{Availability}$.</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • $FR(\%) = (3 / 30) \times 100 = \mathbf{10\%}$.<br>
+              • الساعات الكلية = $30 \times 500 = 15,000 \text{ h}$. التوقف = $300 + 200 + 100 = 600 \text{ h}$. صافي التشغيل $NOT = 15000 - 600 = \mathbf{14,400 \text{ h}}$.<br>
+              • $FR(n) = 3 / 14,400 = \mathbf{0.00021 \text{ عطل/ساعة}}$.<br>
+              • $MTBF = 1 / FR(n) = 14,400 / 3 = \mathbf{4,762 \text{ ساعة/عطل}}$.<br>
+              • $MTTR = 600 / 3 = \mathbf{200 \text{ ساعة/إصلاح}}$.<br>
+              • $\text{Availability} = 4762 / (4762 + 200) = 4762 / 4962 = \mathbf{0.9597 \text{ (أي 96\%)}}$.
+            </div>
+            <div class="decision-box">التقييم: إتاحية المنظومة تبلغ 95.97%، ولرفعها فوق 99% يتطلب التركيز على تقليل زمن الإصلاح المعياري MTTR عبر تدريب الفنيين وتوفير قطع الغيار.</div>
+          </div>
+        </div>
+
+        <div class="sec-card space-y-4" id="quiz-m7">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-cyan-600 ml-1"></i> التقييم الذاتي - الفصل السابع</h4>
+            <button onclick="resetQuiz('quiz-m7')" class="text-xs text-slate-500 hover:text-cyan-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="false" data-expl="في نظام التوالي، المعولية الكلية ناتجة عن ضرب الكسور، فتكون دائماً أقل من معولية أضعف جزء منفرد فيه.">
+            <p class="font-bold">1. في النظام المربوط على التوالي تكون المعولية الكلية أكبر من معولية أي جزء منفرد مكون له.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="a" data-expl="العلاقة بينهما علاقة مقلوب رياضي تام: MTBF = 1 / FR(n).">
+            <p class="font-bold">2. العلاقة الرياضية الصحيحة بين متوسط الوقت بين العطلات MTBF ومعدل الفشل بالساعة FR(n) هي:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) $MTBF = \frac{1}{FR(n)}$</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) $MTBF = FR(n) \times NOT$</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) $MTBF = 1 - FR(n)$</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) $MTBF = \frac{MTTR}{FR(n)}$</button>
+            </div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> فخ امتحاني خطير:</strong> عند حساب $FR(n)$ و$MTBF$، احذر من استخدام إجمالي ساعات الفحص ($30 \times 500 = 15000$) في المقام؛ يجب حتماً طرح ساعات التوقف ($15000 - 600 = 14400$).
+        </div>
+      </section>
+
+      <!-- MODULE 8 -->
+      <section id="module-8" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-orange-600 text-white text-sm flex items-center justify-center">8</span>
+            الفصل الثامن: الصيانة الإنتاجية الشاملة (TPM)
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300">النموذج الياباني (JIPM)</span>
+        </div>
+
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-industry text-orange-600"></i> النشأة، الفلسفة، والركائز الثماني</h3>
+          <p><strong>النشأة والتفكيك الدلالي:</strong> تأسس مفهوم TPM عام <strong>1971</strong> من المعهد الياباني لصيانة المصانع (JIPM) كدمج بين إدارة الجودة الشاملة (TQM) والصيانة الوقائية (PM). تفكيك المصطلح: <em>الصيانة</em> (الحفاظ على الجاهزية بالتنظيف والتزييت والفحص)، <em>الإنتاجية</em> (أداء الصيانة دون إرباك الإنتاج)، و<em>الشاملة</em> (مشاركة الجميع من الإدارة العليا حتى المشغلين). التحول الثقافي: من "أنا أُشغّل وأنت تُصلح" إلى "أنا أرعى ماكنتي كجسدي".</p>
+          <p><strong>الركائز الثماني لـ TPM:</strong> (1) <strong>منهجية 5S:</strong> التصفية (Seiri)، التنظيم (Seiton)، التنظيف (Seiso)، التنميط (Seiketsu)، والانضباط الذاتي (Shitsuke)، (2) <strong>الصيانة الذاتية (Autonomous Maint.):</strong> قيام المشغل بالصيانة البسيطة عبر 8 خطوات (تدريب، تنظيف أولي، مكافحة مصادر الأوساخ، معايير التنظيف، فحص عام، فحص ذاتي، تنميط، وتحسين مستمر)، (3) <strong>التحسين المستمر (Kaizen):</strong> تحسينات صغيرة مستمرة، (4) <strong>الصيانة المخططة:</strong> التحول لمنع العطل، (5) <strong>جودة الصيانة:</strong> التحول من ضبط الجودة إلى ضمان الجودة، (6) <strong>التدريب والتعليم:</strong> تعدد مهارات الفنيين، (7) <strong>مكتب TPM:</strong> إلغاء الروتين والضياع الإداري، و(8) <strong>السلامة والصحة والبيئة (SHE):</strong> بيئة عمل آمنة خالية من الحوادث والتلوث.</p>
+          <p><strong>صعوبات التطبيق الست:</strong> ضعف دعم الإدارة العليا، انعدام التعاون بين المشغلين وفنيي الصيانة، غياب نظم التحفيز، ضعف التدريب، استعجال النتائج قبل تهيئة البنية، وغياب المقاييس الدقيقة.</p>
+        </div>
+
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-orange-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> مقاييس TPM والفاعلية الكلية للمعدات</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>المؤشر</th><th>المعادلة</th><th>البيان</th></tr>
+            <tr><td>الفاعلية الكلية للمعدات (OEE)</td><td>$$OEE = A \times P \times Q$$</td><td>الإتاحية ($A$) $\times$ كفاءة الأداء السرعي ($P$) $\times$ نسبة الجودة ($Q$). المستهدف العالمي $\ge 85\%$.</td></tr>
+            <tr><td>الضياعات الكبرى الست</td><td>$$\text{Six Big Losses}$$</td><td>أعطال مفاجئة + إعداد وضبط + توقفات صغرى + سرعة متدنية + عيوب الجودة + هدر بدء التشغيل.</td></tr>
+          </table>
+        </div>
+
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p8')">
+            <span><i class="fa-solid fa-calculator text-orange-600 ml-1"></i> حالة تطبيقية (8-1): احتساب مؤشر الفاعلية الكلية للمعدات (OEE) لخلية إنتاج مؤتمتة</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p8" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المسألة:</strong> وردية عمل 8 ساعات (480 دقيقة). توقف مخطط للغداء والصيانة الوقائية = 60 دقيقة. وقت التشغيل المتبقي = 420 دقيقة. حدثت توقفات وأعطال غير مخططة بلغت 42 دقيقة. السرعة التصميمية = 1 قطعة/دقيقة. تم إنتاج 340 قطعة خلال الوردية، وُجد منها 17 قطعة معيبة غير مطابقة للجودة. احسب: الإتاحية ($A$)، كفاءة الأداء ($P$)، نسبة الجودة ($Q$)، ومؤشر $OEE$.</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • الإتاحية: $A = \frac{\text{وقت التشغيل الفعلي}}{\text{الوقت المخطط}} = \frac{420 - 42}{420} = \frac{378}{420} = \mathbf{0.90 \text{ (90\%)}}$.<br>
+              • الأداء السرعي: $P = \frac{\text{الإنتاج الفعلي}}{\text{الإنتاج المعياري الممكن في الوقت الفعلي}} = \frac{340}{378 \times 1} = \frac{340}{378} \approx \mathbf{0.8995 \text{ (90\%)}}$.<br>
+              • الجودة: $Q = \frac{\text{القطع الصالحة}}{\text{إجمالي الإنتاج}} = \frac{340 - 17}{340} = \frac{323}{340} = \mathbf{0.95 \text{ (95\%)}}$.<br>
+              • الفاعلية الكلية: $OEE = 0.90 \times 0.90 \times 0.95 \approx \mathbf{0.7695 \text{ (أي 77\%)}}$.
+            </div>
+            <div class="decision-box">التحليل الهندسي: مؤشر OEE المحقق (77%) يقع دون المعيار العالمي لـ TPM ($85\%$)؛ وتبرهن البيانات أن مكمن الخلل الرئيس هو انخفاض كفاءة الأداء والسرعة والتوقفات الصغيرة، مما يقتضي تفعيل ركيزة كايزن والصيانة الذاتية.</div>
+          </div>
+        </div>
+
+        <div class="sec-card space-y-4" id="quiz-m8">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-orange-600 ml-1"></i> التقييم الذاتي - الفصل الثامن</h4>
+            <button onclick="resetQuiz('quiz-m8')" class="text-xs text-slate-500 hover:text-orange-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="true" data-expl="صحيح، الصيانة الذاتية تعني قيام المشغل بمهام الصيانة اليومية البسيطة والاعتناء بماكنته كما يعتني الإنسان بصحته.">
+            <p class="font-bold">1. تقوم فلسفة الصيانة الذاتية في TPM على تشجيع مشغل الماكنة على تنفيذ أعمال التزييت والتنظيف والفحص البسيط بنفسه.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="c" data-expl="خطوة Seiso تعني تنظيف مكان العمل والماكنة وجعلها خالية من الزيوت والأوساخ واكتشاف الخلل أثناء التنظيف.">
+            <p class="font-bold">2. المصطلح الياباني في منهجية 5S الذي يعني (التنظيف الشامل لمكان العمل وجعله خالياً من الزيوت والنفايات) هو:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) Seiri (التصفية)</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) Seiton (التنظيم)</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) Seiso (التنظيف)</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) Shitsuke (الانضباط)</button>
+            </div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> تنبيه مفاهيمي:</strong> الصيانة الإنتاجية الشاملة ليست حملة لشهر واحد تنتهي، بل هي ثقافة مستمرة تتطلب دعماً مطلقاً ومستمراً من الإدارة العليا.
+        </div>
+      </section>
+
+      <!-- MODULE 9 -->
+      <section id="module-9" class="module-block scroll-mt-24">
+        <div class="flex items-center justify-between border-b pb-3 mb-5 border-slate-200 dark:border-slate-800">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white text-sm flex items-center justify-center">9</span>
+            الفصل التاسع: السلامة والصحة المهنية في المنشآت الصناعية
+          </h2>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">السلامة والبيئة المهنية</span>
+        </div>
+
+        <div class="sec-card space-y-3 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-helmet-safety text-emerald-600"></i> مفهوم السلامة، فلسفة القدر، ومعدات الوقاية (PPE)</h3>
+          <p><strong>مفهوم السلامة والصحة المهنية:</strong> العلم الذي يهتم بالحفاظ على سلامة وصحة الإنسان العامل بتوفير بيئة عمل آمنة خالية من مسببات الحوادث أو الإصابات أو الأمراض المهنية. أهدافها الأربعة: حماية العنصر البشري، الحفاظ على الممتلكات والمعدات من التلف، توفير بيئة آمنة للوقاية، وبث الطمأنينة والحد من القلق لدى العاملين. مقوماتها الثلاثة: التخطيط الفني السليم، التشريع الصادق، والتنفيذ القائم على أسس علمية رصينة.</p>
+          <p><strong>السلامة بالمنشآت:</strong> مسؤولية كل فرد لتحقيق "إنتاج بلا حوادث". شروط البيئة السليمة: ملاءمة التصميم، تحديد المخاطر وشرحها للعاملين، التوظيف المشروط بالقدرة الصحية، توفير وسائل إطفاء الحريق وتدريب العمال، والصيانة الصحيحة للآلات. <strong>مهام مسؤول السلامة (6 وظائف):</strong> التفتيش المنتظم، التحقيق بالحوادث وتعميم النتائج، الإشراف على اختيار معدات الوقاية، نشر الثقافة الوقائية، إعداد إحصائيات وأرشيف الحوادث المتكررة، والإشراف على برامج لجنة السلامة. <strong>مسؤولية العامل (4 واجبات):</strong> الالتزام بالتعليمات، أخذ الحيطة، ارتداء معدات الوقاية، والإبلاغ الفوري عن الأخطار.</p>
+          <p><strong>دليل معدات الوقاية الشخصية (PPE):</strong> خوذة الرأس، واقيات الوجه والعينين، القفازات، أحذية السلامة، واقيات السمع في مناطق الضوضاء، الكمامات الواقية من الأبخرة، حزام الأمان للأماكن المرتفعة، والسترة الواقية لكامل الجسم (للحرارة والمواد الكيميائية والإشعاعات).</p>
+          <p><strong>فلسفة منع الخطر ودحض حجة "القضاء والقدر في الإهمال":</strong> معظم الإصابات يمكن منعها بالأخذ بالأسباب؛ فإذا كنت تسير بسرعة آمنة ومنتبهاً وسقط حجر فهذا قضاء وقدر مع محاسبة المهمل بحجز الأحجار، أما إيقاد نار قرب مواد ملتهبة فهو إهمال وانتحار. وحالة بقعة الزيت في أرضية المصنع: المذنب الأول من سببها ولم ينظفها أو يضع شريط تحذير، والمذنب الثاني من داس عليها لعدم ارتدائه حذاء السلامة أو لعدم انتباهه لموضع قدمه.</p>
+          <p><strong>إجراءات مواجهة الحرائق وشروط استخدام المطفأة الخمسة:</strong> التعرف على خطة الإخلاء، التدريبات الدورية، تثبيت أرقام الطوارئ، مواقع الإنذار، والإنارة الساطعة لمخارج الطوارئ. <em>شروط استخدام المطفأة:</em> (1) الدراية بنوع الأسطوانة ونوع الحريق (كهربائي، بترولي، صلب)، (2) معرفة كيفية تشغيلها، (3) كفاية حجمها لإخماد الحريق دون هدر الوقت، (4) أن يكون المكان محصوراً ومغلقاً إذا كان الإطفاء بـ $\text{CO}_2$ مع عدم التنفس لتجنب الإغماء، (5) التأكد التام من وجود مخرج آمن خلفك للهروب عند فشل الإطفاء.</p>
+          <p><strong>إصابات العمل والأمراض المهنية:</strong> الإصابة هي الضرر المباشر للحادث، وتعتبر إصابة عمل ما يقع في مكان العمل أو بسببه أو في طريق الذهاب والإياب المباشر المعتمد. الأمراض المهنية تنجم عن بيئة العمل (ضوضاء، اهتزازات، حرارة، رطوبة، إشعاعات، وأبخرة). النتائج المباشرة: عجز كلي أو جزئي أو وفاة. النتائج غير المباشرة: خسائر مالية فادحة للمنشأة والدولة بفقدان كادر مؤهل، هدر وقت الإنتاج، وتكاليف تدريب وتأهيل البديل.</p>
+        </div>
+
+        <div class="cheat-box">
+          <h4 class="text-xs font-bold text-emerald-400 mb-2"><i class="fa-solid fa-calculator ml-1"></i> المقاييس الإحصائية المعتمدة لحوادث العمل</h4>
+          <table class="tbl-std text-slate-200">
+            <tr><th>المؤشر الإحصائي</th><th>المعادلة القياسية</th><th>البيان</th></tr>
+            <tr><td>معدل تكرار الإصابات (IFR)</td><td>$$IFR = \frac{\text{عدد الإصابات المقعدة} \times 1,000,000}{\text{إجمالي ساعات العمل الفعلية}}$$</td><td>Injury Frequency Rate لكل مليون ساعة عمل.</td></tr>
+            <tr><td>معدل شدة الإصابات (ISR)</td><td>$$ISR = \frac{\text{أيام العمل الضائعة بسبب الإصابة} \times 1,000}{\text{إجمالي ساعات العمل الفعلية}}$$</td><td>Injury Severity Rate لكل ألف ساعة عمل.</td></tr>
+          </table>
+        </div>
+
+        <div class="sec-card space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-slate-900 dark:text-white flex items-center justify-between cursor-pointer" onclick="toggleAcc('p9')">
+            <span><i class="fa-solid fa-calculator text-emerald-600 ml-1"></i> مسألة محلولة (9-1): تحليل إحصائي لمؤشرات السلامة وحادث انسكاب الزيت بالورشة</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </div>
+          <div id="p9" class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <p><strong>المسألة:</strong> مصنع يعمل به 500 عامل بواقع 2,000 ساعة عمل سنوياً لكل عامل (إجمالي ساعات العمل = $1,000,000$ ساعة). خلال العام وقعت 5 إصابات عمل أدت إلى ضياع 150 يوم عمل، من بينها حادث كسر رجل فني صيانة بسبب بقعة زيت لم تُمسح. احسب: (1) معدل تكرار الإصابات (IFR)، (2) معدل شدة الإصابات (ISR)، و(3) التحليل السببي وتوزيع المسؤولية لحادث بقعة الزيت وفق المنهاج.</p>
+            <div class="p-2.5 bg-slate-100 dark:bg-slate-800 font-mono text-xs rounded">
+              • $IFR = \frac{5 \times 1,000,000}{1,000,000} = \mathbf{5.0 \text{ إصابة / مليون ساعة عمل}}$.<br>
+              • $ISR = \frac{150 \times 1,000}{1,000,000} = \mathbf{0.15 \text{ يوم ضائع / ألف ساعة عمل}}$.<br>
+              • التحليل السببي لحادث بقعة الزيت:<br>
+              - المذنب الأول: المتسبب بالبقعة لعدم اتخاذه الاحتياط الفني لمنع التسرب، أو من شاهدها ولم يمسحها أو يحطها بأشرطة تحذير فوراً.<br>
+              - المذنب الثاني: الفني المصاب لعدم ارتدائه حذاء السلامة المانع للانزلاق أو لعدم انتباهه لموضع قدمه أثناء السير.<br>
+              - مسؤولية الإدارة: توفير بيئة عمل خالية من الزيوت وإلزام العاملين بارتداء أحذية الأمان والتفتيش اليومي.
+            </div>
+            <div class="decision-box">الخلاصة المنهجية: الحادث لا يُعزى للقضاء والقدر بمفهوم التواكل، بل هو إهمال بشري مركب يمكن ويجب منعه بتطبيق شروط السلامة الصارمة ونشر الثقافة الوقائية.</div>
+          </div>
+        </div>
+
+        <div class="sec-card space-y-4" id="quiz-m9">
+          <div class="flex items-center justify-between border-b pb-2 border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white"><i class="fa-solid fa-list-check text-emerald-600 ml-1"></i> التقييم الذاتي - الفصل التاسع</h4>
+            <button onclick="resetQuiz('quiz-m9')" class="text-xs text-slate-500 hover:text-emerald-600 font-bold"><i class="fa-solid fa-rotate-right"></i> إعادة</button>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="true" data-expl="صحيح، يشترط القانون أن يكون الطريق مباشراً ومعتمداً ولم يخالف فيه العامل قواعد المرور والمسار الطبيعي.">
+            <p class="font-bold">1. تُعد الإصابة التي يتعرض لها العامل في طريق الذهاب للعمل أو الإياب منه إصابة عمل بشرط التزامه بالطريق المباشر المعتمد دون مخالفة قواعد المرور.</p>
+            <div class="flex gap-2"><button onclick="ansTF(this, true)" class="px-3 py-1 border rounded text-xs">صح</button><button onclick="ansTF(this, false)" class="px-3 py-1 border rounded text-xs">خطأ</button></div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+          <div class="q-item text-xs sm:text-sm space-y-1.5" data-ans="b" data-expl="أهم شرط لسلامة الإنسان هو التأكد من وجود مخرج نجاة مفتوح خلفه للهروب إذا استعصى الحريق، لأن حياة الإنسان أولى من المعدات.">
+            <p class="font-bold">2. من الشروط الصارمة الواجب توافرها قبل الشروع في استخدام مطفأة الحريق اليدوية:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <button onclick="ansMCQ(this, 'a')" class="p-1.5 border rounded text-right">أ) إغلاق أبواب الطوارئ لمنع الأكسجين</button>
+              <button onclick="ansMCQ(this, 'b')" class="p-1.5 border rounded text-right">ب) التأكد من وجود مخرج نجاة آمن خلفك</button>
+              <button onclick="ansMCQ(this, 'c')" class="p-1.5 border rounded text-right">ج) فصل شبكة المياه العامة</button>
+              <button onclick="ansMCQ(this, 'd')" class="p-1.5 border rounded text-right">د) انتظار حضور مسؤول السلامة</button>
+            </div>
+            <div class="fb hidden p-2 rounded text-xs font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="warn-box text-xs">
+          <strong><i class="fa-solid fa-triangle-exclamation ml-1"></i> قاعدة ذهبية:</strong> حياة الإنسان وسلامته البدنية مقدّمة دائماً على سلامة المكائن والمعدات؛ فلا تجازف بالإطفاء إذا لم يتوفر مخرج نجاة آمن وواضح خلفك.
+        </div>
+      </section>
 
     </main>
+  </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900/80 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        منظومة المراجعة الأكاديمية التفاعلية • مادة إدارة الصيانة الصناعية والسلامة المهنية • كلية الإدارة والاقتصاد
-    </footer>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 bg-emerald-600 text-white px-5 py-3 rounded-xl shadow-2xl text-sm font-semibold opacity-0 transition-all duration-300 pointer-events-none z-50 flex items-center gap-2">
-        <span>✅</span> <span id="toast-msg">تم النسخ بنجاح!</span>
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-1">
+      <p class="font-bold text-slate-700 dark:text-slate-300">المنصة المرجعية الشاملة لإدارة الصيانة والسلامة الصناعية</p>
+      <p>جامعة بغداد - كلية الإدارة والاقتصاد - قسم الإدارة الصناعية | إشراف: م.م. جاسم حسين زناد &amp; م. عبد العاطي العقيب</p>
+      <p class="text-[10px] text-slate-400">تطبيق تفاعلي مستقل تم تصميمه وبرمجته وفق أرقى المعايير الهندسية والبرمجية.</p>
     </div>
+  </footer>
 
-    <!-- Script Section -->
-    <script>
-        // Database of Questions from Baghdad University Curriculum
-        const questionsData = [
-            // Chapter 1
-            {
-                id: 1,
-                chapter: 1,
-                chapterTitle: "الفصل 1: مدخل الصيانة",
-                text: "تهدف الصيانة إلى منع حدوث العطلات بشكل كامل ومطلق في النظام الإنتاجي لأن ذلك أمر متاح هندسياً.",
-                answer: false,
-                rationale: "خطأ. تهدف الصيانة إلى تقليل العطلات وليس منع العطل، لأن منع العطلات بشكل كامل يعد أمراً مثالياً من الصعب جداً الوصول إليه عملياً واقتصادياً."
-            },
-            {
-                id: 2,
-                chapter: 1,
-                chapterTitle: "الفصل 1: مدخل الصيانة",
-                text: "تعتبر الصيانة عملية فنية هندسية بحتة ولا ترتبط بوظائف الإدارة كالتخطيط والتنظيم والرقابة.",
-                answer: false,
-                rationale: "خطأ. الصيانة عملية فنية هندسية ولكن لها وجه إداري أصيل، إذ لا يمكن ممارستها بنجاح دون وظائف إدارية كالتخطيط، التنظيم، التنفيذ، والرقابة، وقيادة وتحفيز الأفراد."
-            },
-            {
-                id: 3,
-                chapter: 1,
-                chapterTitle: "الفصل 1: مدخل الصيانة",
-                text: "في النظرة الحديثة للصيانة، يُنظر إلى عامل الوقت بوصفه أسبقية تنافسية للمنظمة الصناعية.",
-                answer: true,
-                rationale: "صح. مقارنة بالنظرة القديمة التي كانت تهمل عامل الوقت، تركز النظرة الحديثة على الوقت كأسبقية تنافسية لتقليل فترات التوقف والتسليم في الموعد."
-            },
-            {
-                id: 4,
-                chapter: 1,
-                chapterTitle: "الفصل 1: مدخل الصيانة",
-                text: "تضم الصيانة غير المخططة ما يُسمى بالصيانة الاضطرارية (الطارئة) التي تجري بدون أي تخطيط مسبق.",
-                answer: true,
-                rationale: "صح. الصيانة الاضطرارية (الطارئة) هي فعاليات تجري بدون أي تخطيط مسبق وتحتاج إلى تدخل فوري لمنع حدوث عطل أكبر."
-            },
-            {
-                id: 5,
-                chapter: 1,
-                chapterTitle: "الفصل 1: مدخل الصيانة",
-                text: "تعتمد الصيانة الظرفية أو الشرطية (CBM) على استمرار مراقبة مؤشرات العطل كالحرارة والاهتزازات للتنبؤ بقرب حدوث العطل.",
-                answer: true,
-                rationale: "صح. الصيانة الشرطية (Condition-Based Maintenance) تراقب الخصائص التشغيلية مثل الاهتزازات أو تركيب الزيت كيميائياً لاتخاذ قرار الإيقاف قبل الفشل."
-            },
-            {
-                id: 6,
-                chapter: 1,
-                chapterTitle: "الفصل 1: مدخل الصيانة",
-                text: "تُستخدم طريقة الفحص العام في المعامل الكبيرة ذات المعدات والطرق المعقدة.",
-                answer: false,
-                rationale: "خطأ. طريقة الفحص العام تُستخدم في المعامل الصغيرة لسهولة تنفيذها بالحواس والأجهزة البسيطة، بينما طريقة الفحص المتخصص هي التي تستخدم في المعامل الكبيرة."
-            },
-            {
-                id: 7,
-                chapter: 1,
-                chapterTitle: "الفصل 1: مدخل الصيانة",
-                text: "تُستخدم الزيوت الصلبة في الأماكن الباردة جداً التي يتجمد فيها الزيت أو الحارة جداً التي يحترق فيها الزيت السائل.",
-                answer: true,
-                rationale: "صح. الزيوت الصلبة عبارة عن معادن أو مواد كيميائية صلبة صُممت خصيصاً للظروف القصوى من برودة شديدة أو حرارة مرتفعة تمنع استخدام الزيوت السائلة."
-            },
-            {
-                id: 8,
-                chapter: 1,
-                chapterTitle: "الفصل 1: مدخل الصيانة",
-                text: "أمر العمل هو الوثيقة الرسمية التي تخول فني الصيانة البدء في إجراء أعمال الصيانة.",
-                answer: true,
-                rationale: "صح. أمر العمل (Job Order) هو الوثيقة الأساسية التي تخول الفني البدء بالعمل وتحدد المستلزمات والتكاليف وساعات العمل."
-            },
+  <!-- Modular Vanilla JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. Initialize KaTeX Auto-Render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
 
-            // Chapter 2
-            {
-                id: 9,
-                chapter: 2,
-                chapterTitle: "الفصل 2: العطلات",
-                text: "تحدث العطلات الأولية (المبكرة) في نهاية العمر التشغيلي للماكنة نتيجة التآكل والتقادم.",
-                answer: false,
-                rationale: "خطأ. العطلات الأولية تحصل في المرحلة الأولى (بداية تشغيل الماكنة) بسبب ضعف التصميم أو سوء استخدام المشغلين وتقل تدريجياً، بينما العطلات في نهاية العمر تسمى عطلات الاستهلاك (التقادم)."
-            },
-            {
-                id: 10,
-                chapter: 2,
-                chapterTitle: "الفصل 2: العطلات",
-                text: "تنشأ العطلات العشوائية في كثير من الأحيان عن تحميل المكائن والمعدات الإنتاجية فوق طاقتها التصميمية.",
-                answer: true,
-                rationale: "صح. التحميل الزائد عن الطاقة التصميمية هو أحد الأسباب الرئيسة لحدوث العطلات العشوائية التي يصعب التنبؤ بوقت وقوعها."
-            },
-            {
-                id: 11,
-                chapter: 2,
-                chapterTitle: "الفصل 2: العطلات",
-                text: "العطلات الدورية المتوقعة يكون خير علاج لها هو استخدام الصيانة الاضطرارية والطارئة.",
-                answer: false,
-                rationale: "خطأ. العطلات الدورية المتوقعة تُعالج بالفحص والتفتيش والصيانة المبرمجة لأنها متوقعة ويمكن جدولتها، أما الصيانة العلاجية أو الاضطرارية فترتبط بالعطلات غير المتوقعة."
-            },
-            {
-                id: 12,
-                chapter: 2,
-                chapterTitle: "الفصل 2: العطلات",
-                text: "تبدأ مراحل تخطيط العطلات بمرحلة 'الأعمال' تليها مرحلة 'الاكتشاف'.",
-                answer: false,
-                rationale: "خطأ. الترتيب الصحيح لمراحل تخطيط العطلات هو: (الاكتشاف ⬅️ الأعمال ⬅️ التعلم ⬅️ الخطط)."
-            },
-            {
-                id: 13,
-                chapter: 2,
-                chapterTitle: "الفصل 2: العطلات",
-                text: "يمكن أن تتسبب الإدارة في زيادة العطلات نتيجة سعيها لتخفيض التخصيصات المالية لقسم الصيانة دون دراسة عواقب المدى البعيد.",
-                answer: true,
-                rationale: "صح. لجوء الإدارة لتخفيض المخصصات أو شراء قطع غيار رديئة أو ضعف التدريب يساهم مباشرة في تفاقم الأعطال وتلف المكائن."
-            },
+      // 2. Dark / Light Theme Toggle
+      const themeToggle = document.getElementById('themeToggle');
+      if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+      });
 
-            // Chapter 3
-            {
-                id: 14,
-                chapter: 3,
-                chapterTitle: "الفصل 3: تخطيط الصيانة",
-                text: "تعد خطة الصيانة خطة مستقلة بذاتها ولا علاقة لها بالخطة الشاملة للمنشأة الصناعية.",
-                answer: false,
-                rationale: "خطأ. خطة الصيانة هي جزء أساسي ومهم ومتكامل من الخطة الشاملة للوحدة الصناعية وتهدف للاستغلال الأمثل للموارد وتحقيق أهداف المنشأة ككل."
-            },
-            {
-                id: 15,
-                chapter: 3,
-                chapterTitle: "الفصل 3: تخطيط الصيانة",
-                text: "تتضمن برامج الصيانة طويلة الأجل برامج الاستبدال وإعادة البناء وتوقعات الإصلاح.",
-                answer: true,
-                rationale: "صح. البرامج طويلة الأجل تشمل برامج الاستبدال، إعادة البناء، وتوقعات الإصلاح، بينما البرامج قصيرة الأجل تشمل التفتيش والإصلاح المخطط والوقائي."
-            },
-            {
-                id: 16,
-                chapter: 3,
-                chapterTitle: "الفصل 3: تخطيط الصيانة",
-                text: "تعد المواعيد المحددة في الجدول السنوي العام للصيانة المبرمجة استرشادية فقط ويجوز لأي فني تغييرها في أي وقت.",
-                answer: false,
-                rationale: "خطأ. مواعيد تنفيذ برامج الصيانة ملزمة ولا يجوز إلغاؤها أو تغييرها إلا بموافقة الإدارة العليا للشركة."
-            },
-            {
-                id: 17,
-                chapter: 3,
-                chapterTitle: "الفصل 3: تخطيط الصيانة",
-                text: "المكائن الحرجة في ترتيب الأولويات هي المكائن التي لا يؤثر توقفها على سلامة العمل أو الخط الإنتاجي.",
-                answer: false,
-                rationale: "خطأ. المكائن الحرجة هي المكائن ذات الأولوية القصوى التي يؤدي توقفها إلى توقف الخط الإنتاجي كلياً أو التأثير الخطير على السلامة والأرباح."
-            },
-            {
-                id: 18,
-                chapter: 3,
-                chapterTitle: "الفصل 3: تخطيط الصيانة",
-                text: "يحتوي تقرير إتمام العمل على تحديد مسببات عدم إتمام العمل ومتطلبات أعمال الصيانة الحقيقية وحساب التكلفة.",
-                answer: true,
-                rationale: "صح. تقرير إتمام العمل يصف الأعمال المنفذة، الجهد، الزمن، الكلفة، ومسببات عدم إنجاز أي مهام ومعدلات قطع الغيار."
-            },
+      // 3. Mobile Sidebar Drawer Toggle
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const closeSidebar = document.getElementById('closeSidebar');
+      const sidebarDrawer = document.getElementById('sidebarDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
 
-            // Chapter 4
-            {
-                id: 19,
-                chapter: 4,
-                chapterTitle: "الفصل 4: الهيكل التنظيمي",
-                text: "التنظيم هو غاية وهدف بحد ذاته تسعى المنظمات للوصول إليه وليس مجرد وسيلة.",
-                answer: false,
-                rationale: "خطأ. التنظيم وظيفة إدارية وهو ليس هدفاً بحد ذاته وإنما يُستخدم كوسيلة وآلية لتحقيق أهداف المنشأة بكفاءة وفعالية."
-            },
-            {
-                id: 20,
-                chapter: 4,
-                chapterTitle: "الفصل 4: الهيكل التنظيمي",
-                text: "يتميز الهيكل التنفيذي (البسيط) بارتفاع درجة التخصص وتعدد وسائل الارتباط والاتصال.",
-                answer: false,
-                rationale: "خطأ. الهيكل التنفيذي البسيط يتميز بالإشراف المباشر، والتخصص القليل، والعدد القليل من وسائل الارتباط، والمركزية الشديدة."
-            },
-            {
-                id: 21,
-                chapter: 4,
-                chapterTitle: "الفصل 4: الهيكل التنظيمي",
-                text: "من أهم مزايا التنظيم المركزي لإدارة الصيانة انخفاض تكاليف الصيانة والاستفادة من الموارد المتاحة بشكل أفضل.",
-                answer: true,
-                rationale: "صح. التنظيم المركزي يجمع الموارد وورش الصيانة مما يخفض التكاليف ويرفع مهارات وخبرات العاملين، لكن يعيبه طول خطوط الاتصال بالإنتاج."
-            },
-            {
-                id: 22,
-                chapter: 4,
-                chapterTitle: "الفصل 4: الهيكل التنظيمي",
-                text: "من عيوب التنظيم اللامركزي للصيانة احتمال إهمال فعاليات الصيانة على حساب أهداف الإنتاج الفورية.",
-                answer: true,
-                rationale: "صح. تواجد فرق الصيانة داخل أقسام الإنتاج قد يجعل مدراء الإنتاج يضغطون لتشغيل الماكنة وإهمال أعمال الصيانة المبرمجة."
-            },
-            {
-                id: 23,
-                chapter: 4,
-                chapterTitle: "الفصل 4: الهيكل التنظيمي",
-                text: "في الهيكل التنظيمي المصفوفي، يخضع فني الصيانة لرئيس واحد فقط بما يضمن وحدة القيادة والأمر.",
-                answer: false,
-                rationale: "خطأ. الهيكل المصفوفي يتميز بالانسياب المزدوج للسلطة، حيث يخضع الفرد لإدارتين: الإدارة الوظيفية (مدير الصيانة) وإدارة المشروع، مما قد يسبب صراع مسؤوليات."
-            },
-            {
-                id: 24,
-                chapter: 4,
-                chapterTitle: "الفصل 4: الهيكل التنظيمي",
-                text: "يُشترط في تصميم ورشة الصيانة تواجد نوافذ بمساحة لا تقل عن 25% لتوفير التهوية والإضاءة الطبيعية والصناعية.",
-                answer: true,
-                rationale: "صح. هذه النسبة (25%) من الشروط الهندسية الواجبة في تصميم ورش الصيانة لضمان السلامة المهنية والتهوية والإضاءة."
-            },
+      function openDrawer() {
+        sidebarDrawer.classList.remove('translate-x-full');
+        drawerBackdrop.classList.remove('hidden');
+      }
+      function closeDrawer() {
+        sidebarDrawer.classList.add('translate-x-full');
+        drawerBackdrop.classList.add('hidden');
+      }
+      if (sidebarToggle) sidebarToggle.addEventListener('click', openDrawer);
+      if (closeSidebar) closeSidebar.addEventListener('click', closeDrawer);
+      if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
 
-            // Chapter 5
-            {
-                id: 25,
-                chapter: 5,
-                chapterTitle: "الفصل 5: تكاليف الصيانة",
-                text: "تُعد أجور عمال الإنتاج العاطلين عن العمل أثناء توقف الماكنة للإصلاح من التكاليف المباشرة للصيانة.",
-                answer: false,
-                rationale: "خطأ. أجور عمال الإنتاج العاطلين، وتلف المواد الأولية، وفقدان الإنتاج، وغرامات التأخير هي تكاليف غير مباشرة (تكاليف توقف)، بينما أجور عمال الصيانة ومواد الصيانة هي كلف مباشرة."
-            },
-            {
-                id: 26,
-                chapter: 5,
-                chapterTitle: "الفصل 5: تكاليف الصيانة",
-                text: "في بداية العمر التشغيلي للماكنة، تكون تكاليف الصيانة العلاجية أقل من تكاليف الصيانة الوقائية.",
-                answer: true,
-                rationale: "صح. في بداية العمر تكون الماكنة جديدة والأعطال نادرة فتكون تكاليف العلاجية منخفضة، ومع التقادم ترتفع تكاليف العلاجية تدريجياً حتى تتساوى عند نقطة التعادل ثم تتجاوز الوقائية بمعدلات كبيرة."
-            },
-            {
-                id: 27,
-                chapter: 5,
-                chapterTitle: "الفصل 5: تكاليف الصيانة",
-                text: "يفضل اليابانيون اعتماد برامج الصيانة العلاجية بدلاً من الوقائية لتقليل نفقات الفحص والجدولة.",
-                answer: false,
-                rationale: "خطأ. يفضل اليابانيون اعتماد الصيانة الوقائية في كافة الحالات لأن توقف المكائن يسبب تكاليف غير ملموسة (ضياع سمعة الشركة، هبوط معنويات العاملين، خسارة المبيعات)."
-            },
-            {
-                id: 28,
-                chapter: 5,
-                chapterTitle: "الفصل 5: تكاليف الصيانة",
-                text: "يساعد تحليل باريتو للأدوات الاحتياطية في خفض تكاليف الصيانة من خلال التركيز على المواد ذات الكلفة العالية.",
-                answer: true,
-                rationale: "صح. تحليل باريتو يحدد نسبة الـ 20% من قطع الغيار التي تمثل 80% من إجمالي الإنفاق، مما يتيح إحكام الرقابة عليها وتوفير مبالغ ضخمة."
-            },
+      // Close drawer on link click in mobile
+      document.querySelectorAll('.module-nav-item, #navLinksContainer a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 1024) closeDrawer();
+        });
+      });
 
-            // Chapter 6
-            {
-                id: 29,
-                chapter: 6,
-                chapterTitle: "الفصل 6: الاستبدال",
-                text: "تأخذ طريقة صافي القيمة الحالية في الاستبدال بنظر الاعتبار التغير الزمني للنقود باستخدام سعر الخصم.",
-                answer: true,
-                rationale: "صح. طريقة صافي القيمة الحالية (NPV) تستخدم سعر الخصم لعكس القيمة الزمنية للنقود على عكس الطريقة الجدولية التقليدية."
-            },
-            {
-                id: 30,
-                chapter: 6,
-                chapterTitle: "الفصل 6: الاستبدال",
-                text: "في استبدال المعدات التي تتلف فجائياً وكلياً كالمصابيح، يكون الاستبدال الفردي دائماً أفضل اقتصادياً من الاستبدال الجماعي.",
-                answer: false,
-                rationale: "خطأ. يعتمد القرار على مقارنة تكاليف الاستبدال الفردي مع تكلفة الاستبدال الجماعي؛ وغالباً ما يحقق الاستبدال الجماعي المنظم في شهر معين وفورات مالية ضخمة مقارنة بالفردي."
-            },
+      // 4. Global Search Filter
+      const searchInput = document.getElementById('globalSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+          const query = e.target.value.toLowerCase().trim();
+          document.querySelectorAll('.module-block').forEach(module => {
+            const text = module.textContent.toLowerCase();
+            module.style.display = text.includes(query) ? 'block' : 'none';
+          });
+        });
+      }
 
-            // Chapter 7
-            {
-                id: 31,
-                chapter: 7,
-                chapterTitle: "الفصل 7: المعولية",
-                text: "القابلية على الصيانة (Maintainability) تعني احتمالية إنجاز المنتوج لوظيفته دون أي فشل.",
-                answer: false,
-                rationale: "خطأ. هذا تعريف المعولية (Reliability). أما القابلية على الصيانة فتعني السهولة التي يصلح بها المنتوج وتستبدل أجزاؤه بدون صعوبات."
-            },
-            {
-                id: 32,
-                chapter: 7,
-                chapterTitle: "الفصل 7: المعولية",
-                text: "تتراوح القيمة العددية لمعولية أي ماكنة أو جزء بين (0 و 1).",
-                answer: true,
-                rationale: "صح. المعولية مقياس احتمالي، وقيمتها تتراوح بين الصفر (فشل حتمي) والواحد الصحيح (تشغيل مثالي خالي من الأعطال 100%)."
-            },
-            {
-                id: 33,
-                chapter: 7,
-                chapterTitle: "الفصل 7: المعولية",
-                text: "في نظم الربط على التوالي، تكون معولية النظام الكلية أقل من قيمة معولية أي جزء منفرد فيها.",
-                answer: true,
-                rationale: "صح. لأن المعولية الكلية على التوالي هي حاصل ضرب معوليات الأجزاء (Rs = R1 × R2 × ... Rn)، وحاصل ضرب الكسور يقل كلما زادت الأجزاء."
-            },
-            {
-                id: 34,
-                chapter: 7,
-                chapterTitle: "الفصل 7: المعولية",
-                text: "في الترتيب على التوازي، يؤدي فشل أي جزء بالضرورة إلى تعطل وتوقف النظام ككل.",
-                answer: false,
-                rationale: "خطأ. هذا يحدث في الربط على التوالي. أما في التوازي، فعطل جزء لا يعطل النظام لوجود أجزاء احتياطية مساندة تعمل تلقائياً."
-            },
-            {
-                id: 35,
-                chapter: 7,
-                chapterTitle: "الفصل 7: المعولية",
-                text: "تتناسب الإتاحية (Availability) طردياً مع متوسط وقت التصليح (MTTR) وعكسياً مع متوسط الوقت بين العطلات (MTBF).",
-                answer: false,
-                rationale: "خطأ. العكس هو الصحيح تماماً؛ فالإتاحية تتناسب طردياً مع MTBF وعكسياً مع MTTR، لأن زيادة وقت الإصلاح تقلل جاهزية وإتاحية الماكنة للعمل."
-            },
+      updateGlobalQuizProgress();
+    });
 
-            // Chapter 8 & Safety
-            {
-                id: 36,
-                chapter: 8,
-                chapterTitle: "الفصل 8: TPM",
-                text: "يقوم مفهوم الصيانة الإنتاجية الشاملة (TPM) على مبدأ إعطاء المسؤولية الأولية لبعض أعمال الصيانة البسيطة إلى مشغل الماكنة.",
-                answer: true,
-                rationale: "صح. هذا هو جوهر ركيزة 'الصيانة الذاتية' (Autonomous Maintenance) التي تحول تفكير المشغل من (أنا أشغل وقسم الصيانة يصلح) إلى تملك الماكنة والاعتناء بها."
-            },
-            {
-                id: 37,
-                chapter: 8,
-                chapterTitle: "الفصل 8: TPM",
-                text: "يشير مصطلح (Seiri) في منهجية السينات الخمس (5S) إلى عملية تنظيف مكان العمل وجعله خالياً من الزيوت.",
-                answer: false,
-                rationale: "خطأ. مصطلح (Seiri) يعني التصفية والفرز (عزل الأجزاء غير الضرورية والتخلص منها)، أما التنظيف فهو (Seiso)."
-            },
-            {
-                id: 38,
-                chapter: 8,
-                chapterTitle: "الفصل 8: TPM",
-                text: "يركز مفهوم التحسين المستمر (Kaizen) على إحداث قفزات تكنولوجية مفاجئة ومكلفة جداً في بيئة العمل.",
-                answer: false,
-                rationale: "خطأ. الكايزن (Kaizen) ياباني الأصل ويركز على إدخال تحسينات صغيرة ولكن مستمرة في جميع جوانب العمل وبمشاركة كافة العاملين وبأقل التكاليف."
-            },
-            {
-                id: 39,
-                chapter: 9,
-                chapterTitle: "ملحق: السلامة المهنية",
-                text: "تعتبر معظم الإصابات المهنية في المصانع قضاءً وقدراً محتوماً لا يمكن تجنبه أو منع وقوعه بالأخذ بالأسباب.",
-                answer: false,
-                rationale: "خطأ. يؤكد العلم ومنهاج السلامة أن معظم الإصابات المهنية يمكن منعها عبر التزام أصول السلامة والاحتياطات وتصحيح الأوضاع الخطرة، ولا يجوز تبرير الإهمال والاستهتار بالقضاء والقدر."
-            },
-            {
-                id: 40,
-                chapter: 9,
-                chapterTitle: "ملحق: السلامة المهنية",
-                text: "تعتبر الحادثة التي تقع للعامل في طريق ذهابه للعمل إصابة عمل بشرط ألا يكون قد خالف قواعد المرور وسلك طريقاً مباشراً معتمداً.",
-                answer: true,
-                rationale: "صح. القانون ومنهاج السلامة يصنف حوادث الطريق كإصابة عمل ضمن هذا الشرط المحدد (الطريق المباشر المعتمد ودون مخالفة المرور)."
-            }
-        ];
-
-        // State variables
-        let userAnswers = {};
-        let currentFilter = 'all';
-
-        // Initialize App
-        function initApp() {
-            renderQuestions();
-            updateStats();
+    // Toggle Accordion Function
+    function toggleAcc(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.toggle('hidden');
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(el, {
+            delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}],
+            throwOnError: false
+          });
         }
+      }
+    }
 
-        // Switch Tabs
-        function switchTab(tabId) {
-            const tabs = ['quiz', 'summaries', 'math', 'prompts'];
-            tabs.forEach(t => {
-                const btn = document.getElementById(`tab-btn-${t}`);
-                const sec = document.getElementById(`section-${t}`);
-                if (t === tabId) {
-                    btn.classList.add('active');
-                    btn.classList.remove('text-slate-300');
-                    sec.classList.remove('hidden');
-                } else {
-                    btn.classList.remove('active');
-                    btn.classList.add('text-slate-300');
-                    sec.classList.add('hidden');
-                }
-            });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Quiz Logic Engine
+    let totalQuestions = 18; // 2 questions per module * 9 modules
+    let answeredQuestions = new Set();
+    let correctAnswersCount = 0;
+
+    function updateGlobalQuizProgress() {
+      const qItems = document.querySelectorAll('.q-item');
+      totalQuestions = qItems.length || 18;
+      const progressPercent = Math.round((answeredQuestions.size / totalQuestions) * 100);
+      const progressBar = document.getElementById('globalQuizProgressBar');
+      const badge = document.getElementById('globalQuizScoreBadge');
+      if (progressBar) progressBar.style.width = progressPercent + '%';
+      if (badge) badge.innerText = progressPercent + '%';
+    }
+
+    function ansTF(btn, userVal) {
+      const container = btn.closest('.q-item');
+      if (!container || container.classList.contains('answered')) return;
+      container.classList.add('answered');
+
+      const correctVal = container.getAttribute('data-ans') === 'true';
+      const expl = container.getAttribute('data-expl');
+      const fb = container.querySelector('.fb');
+
+      container.querySelectorAll('button').forEach(b => b.disabled = true);
+      const isCorrect = (userVal === correctVal);
+
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+        fb.innerHTML = '<span class="text-emerald-700 dark:text-emerald-300 font-bold"><i class="fa-solid fa-circle-check ml-1"></i> إجابة صحيحة!</span> ' + expl;
+        fb.className = 'fb p-2 rounded text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-slate-800 dark:text-slate-200 mt-2';
+        correctAnswersCount++;
+      } else {
+        btn.classList.add('bg-rose-500', 'text-white', 'border-rose-500');
+        fb.innerHTML = '<span class="text-rose-700 dark:text-rose-300 font-bold"><i class="fa-solid fa-circle-xmark ml-1"></i> إجابة غير صحيحة.</span> <strong>التصويب العلمي:</strong> ' + expl;
+        fb.className = 'fb p-2 rounded text-xs font-semibold bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-slate-800 dark:text-slate-200 mt-2';
+      }
+      fb.classList.remove('hidden');
+      answeredQuestions.add(container);
+      updateGlobalQuizProgress();
+    }
+
+    function ansMCQ(btn, userOpt) {
+      const container = btn.closest('.q-item');
+      if (!container || container.classList.contains('answered')) return;
+      container.classList.add('answered');
+
+      const correctOpt = container.getAttribute('data-ans');
+      const expl = container.getAttribute('data-expl');
+      const fb = container.querySelector('.fb');
+
+      container.querySelectorAll('button').forEach(b => b.disabled = true);
+      const isCorrect = (userOpt === correctOpt);
+
+      if (isCorrect) {
+        btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+        fb.innerHTML = '<span class="text-emerald-700 dark:text-emerald-300 font-bold"><i class="fa-solid fa-circle-check ml-1"></i> إجابة صحيحة وممتازة!</span> ' + expl;
+        fb.className = 'fb p-2 rounded text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-slate-800 dark:text-slate-200 mt-2';
+        correctAnswersCount++;
+      } else {
+        btn.classList.add('bg-rose-500', 'text-white', 'border-rose-500');
+        fb.innerHTML = '<span class="text-rose-700 dark:text-rose-300 font-bold"><i class="fa-solid fa-circle-xmark ml-1"></i> خيار غير صحيح.</span> <strong>التعليل والتحليل:</strong> ' + expl;
+        fb.className = 'fb p-2 rounded text-xs font-semibold bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-slate-800 dark:text-slate-200 mt-2';
+      }
+      fb.classList.remove('hidden');
+      answeredQuestions.add(container);
+      updateGlobalQuizProgress();
+    }
+
+    function resetQuiz(quizId) {
+      const quizSection = document.getElementById(quizId);
+      if (!quizSection) return;
+      quizSection.querySelectorAll('.q-item').forEach(item => {
+        item.classList.remove('answered');
+        item.querySelectorAll('button').forEach(b => {
+          b.disabled = false;
+          b.classList.remove('bg-emerald-500', 'bg-rose-500', 'text-white', 'border-emerald-500', 'border-rose-500');
+        });
+        const fb = item.querySelector('.fb');
+        if (fb) {
+          fb.classList.add('hidden');
+          fb.innerHTML = '';
         }
-
-        // Render Questions
-        function renderQuestions() {
-            const container = document.getElementById('questionsContainer');
-            container.innerHTML = '';
-
-            const filtered = questionsData.filter(q => {
-                if (currentFilter === 'all') return true;
-                return q.chapter.toString() === currentFilter;
-            });
-
-            if (filtered.length === 0) {
-                container.innerHTML = `<div class="text-center py-12 text-slate-400">لا توجد أسئلة متوفرة في هذا القسم حالياً.</div>`;
-                return;
-            }
-
-            filtered.forEach((q, index) => {
-                const answered = userAnswers.hasOwnProperty(q.id);
-                const userAnswer = userAnswers[q.id];
-                const isCorrect = answered && userAnswer === q.answer;
-
-                const qCard = document.createElement('div');
-                qCard.className = `bg-slate-800/90 border ${answered ? (isCorrect ? 'border-emerald-500/50' : 'border-rose-500/50') : 'border-slate-700'} p-5 sm:p-6 rounded-2xl transition duration-200 shadow-md space-y-4`;
-                qCard.id = `q-card-${q.id}`;
-
-                let html = `
-                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700/60 pb-3">
-                        <div class="flex items-center gap-2">
-                            <span class="bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs px-2.5 py-1 rounded-md font-bold">
-                                سؤال ${q.id}
-                            </span>
-                            <span class="text-xs text-slate-400">${q.chapterTitle}</span>
-                        </div>
-                        ${answered ? `
-                            <span class="text-xs px-2.5 py-1 rounded-full font-bold ${isCorrect ? 'bg-emerald-900/60 text-emerald-300 border border-emerald-700/60' : 'bg-rose-900/60 text-rose-300 border border-rose-700/60'}">
-                                ${isCorrect ? '✓ إجابتك صحيحة' : '✗ إجابتك خاطئة'}
-                            </span>
-                        ` : ''}
-                    </div>
-
-                    <p class="text-base sm:text-lg font-semibold text-slate-100 leading-relaxed">
-                        "${q.text}"
-                    </p>
-
-                    <div class="flex items-center gap-3 pt-2">
-                        <button onclick="handleAnswer(${q.id}, true)" 
-                            ${answered ? 'disabled' : ''} 
-                            class="flex-1 py-2.5 px-4 rounded-xl text-sm font-bold border transition flex items-center justify-center gap-2
-                            ${answered ? (q.answer === true ? 'bg-emerald-600 text-white border-emerald-500' : (userAnswer === true ? 'bg-rose-600 text-white border-rose-500' : 'bg-slate-800 text-slate-500 border-slate-700 opacity-60')) : 'bg-slate-900 hover:bg-emerald-950/60 hover:border-emerald-500/80 text-emerald-300 border-slate-700'}">
-                            <span>✔</span> صـــــح
-                        </button>
-                        <button onclick="handleAnswer(${q.id}, false)" 
-                            ${answered ? 'disabled' : ''} 
-                            class="flex-1 py-2.5 px-4 rounded-xl text-sm font-bold border transition flex items-center justify-center gap-2
-                            ${answered ? (q.answer === false ? 'bg-emerald-600 text-white border-emerald-500' : (userAnswer === false ? 'bg-rose-600 text-white border-rose-500' : 'bg-slate-800 text-slate-500 border-slate-700 opacity-60')) : 'bg-slate-900 hover:bg-rose-950/60 hover:border-rose-500/80 text-rose-300 border-slate-700'}">
-                            <span>✖</span> خـــــطأ
-                        </button>
-                    </div>
-
-                    ${answered ? `
-                        <div class="mt-4 p-4 rounded-xl ${isCorrect ? 'bg-emerald-950/40 border border-emerald-800/40 text-emerald-200' : 'bg-rose-950/40 border border-rose-800/40 text-rose-200'} text-sm leading-relaxed animate-fade-in">
-                            <strong class="block mb-1 font-bold ${isCorrect ? 'text-emerald-400' : 'text-rose-400'}">
-                                📖 الشرح والتعليل الأكاديمي:
-                            </strong>
-                            ${q.rationale}
-                        </div>
-                    ` : ''}
-                `;
-
-                qCard.innerHTML = html;
-                container.appendChild(qCard);
-            });
-
-            document.getElementById('stat-total').innerText = filtered.length;
-        }
-
-        // Handle Answer Click
-        function handleAnswer(qId, selectedBool) {
-            userAnswers[qId] = selectedBool;
-            renderQuestions();
-            updateStats();
-        }
-
-        // Update Stats
-        function updateStats() {
-            const filtered = questionsData.filter(q => {
-                if (currentFilter === 'all') return true;
-                return q.chapter.toString() === currentFilter;
-            });
-
-            let answeredCount = 0;
-            let correctCount = 0;
-            let wrongCount = 0;
-
-            filtered.forEach(q => {
-                if (userAnswers.hasOwnProperty(q.id)) {
-                    answeredCount++;
-                    if (userAnswers[q.id] === q.answer) {
-                        correctCount++;
-                    } else {
-                        wrongCount++;
-                    }
-                }
-            });
-
-            const scorePercent = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
-
-            document.getElementById('stat-answered').innerText = answeredCount;
-            document.getElementById('stat-total').innerText = filtered.length;
-            document.getElementById('stat-correct').innerText = correctCount;
-            document.getElementById('stat-wrong').innerText = wrongCount;
-            document.getElementById('stat-score').innerText = `${scorePercent}%`;
-        }
-
-        // Filter by Chapter
-        function filterQuestions() {
-            currentFilter = document.getElementById('chapterFilter').value;
-            renderQuestions();
-            updateStats();
-        }
-
-        // Reset Quiz
-        function resetQuiz() {
-            if (confirm('هل أنت متأكد من رغبتك في إعادة تعيين إجابات الاختبار بالكامل؟')) {
-                userAnswers = {};
-                renderQuestions();
-                updateStats();
-                showToast('تمت إعادة تعيين الاختبار بنجاح');
-            }
-        }
-
-        // Copy Prompt
-        function copyPrompt(promptType) {
-            let text = "";
-            if (promptType === 'prompt1') {
-                text = `أنت بروفيسور خبير وممتحن في مادة "إدارة الصيانة الصناعية والسلامة المهنية" لطلبة المرحلة الثالثة بقسم الإدارة الصناعية. أريدك أن تلعب معي دور "الممتحن التفاعلي الشفوي".
-قواعد التفاعل:
-1. اطرح علي سؤالاً واحداً فقط في كل مرة بنمط (صح أم خطأ) مع ذكر عبارة دقيقة ومحكمة مأخوذة من فصول المادة (مثل: العطلات، المعولية، أو الصيانة الوقائية والإنتاجية الشاملة).
-2. انتظر ردي وإجابتي وتعليلي للأمر.
-3. بعد إجابتي، قم بتقييم جوابي بدقة، واشرح لي السند الأكاديمي والتعليل الصحيح ولماذا قد تكون العبارة خادعة.
-4. اطرح السؤال التالي، واحتسب درجاتي حتى 10 أسئلة. ابدأ بالسؤال الأول الآن.`;
-            } else if (promptType === 'prompt2') {
-                text = `أنت مهندس صيانة وخبير في بحوث العمليات وإدارة الإنتاج. أريدك أن تزودني بمسألة حسابية تطبيقية واحدة على إحدى الموضوعات التالية في إدارة الصيانة:
-- حساب الحجم الأمثل للقوى العاملة بموجب صيغة Q = F / (R - F).
-- أو حساب معولية نظام مركب (توالي وتوازي) أو مؤشرات MTBF و MTTR والإتاحية Availability.
-- أو المفاضلة الاقتصادية بين الاستبدال الفردي والاستبدال الجماعي.
-
-الشروط:
-1. اعطني نص المسألة والمعطيات فقط أولاً، واطلب مني حلها.
-2. لا تعرض الحل حتى أقدم إجابتي أو أطلب منك الحل التوضيحي.
-3. عند عرض الحل، اشرح الخطوات الرياضية خطوة بخطوة (Chain of Thought) مع ذكر القوانين وتبرير القرار النهائي. ابدأ الآن بالمسألة الأولى.`;
-            } else if (promptType === 'prompt3') {
-                text = `بصفتك أستاذ مادة إدارة الصيانة، استخرج لي من المنهج قائمة بأهم 10 "مصائد امتحانية" وفروقات دقيقة تأتي عادة في أسئلة (صح أو خطأ) ويقع فيها الطلاب نتيجة تشابه الكلمات أو التعاريف (على سبيل المثال: الفرق بين الصيانة الطارئة والوقائية، والفرق بين MTBF و MTTR، والفرق بين خطوات 5S، ونماذج الهيكل المركزي واللامركزي والمصفوفي).
-نسق الإجابة في جدول يوضح:
-(المفهوم 1 | المفهوم 2 | نقطة الخلط الشائعة في الامتحانات | الصيغة الخاطئة النموذجية | التصحيح العلمي).`;
-            } else if (promptType === 'prompt4') {
-                text = `أريد جدول مراجعة سريعة ومكثفة (Flashcards) لليلة الامتحان في مادة "إدارة الصيانة الصناعية والسلامة المهنية".
-المطلوب استخراج جميع المصطلحات الإنجليزية والعربية الأساسية في المادة (مثل: CBM, CM, PM, TPM, DFM, LRU, MTBF, MTTR, Kaizen, 5S).
-ضع لكل مصطلح:
-1. التعريف الجوهري المركز في 7 كلمات كحد أقصى.
-2. الكلمة المفتاحية التي إن رأيتها في السؤال تدل على صحته.
-3. التريكة الخاطئة الشائعة عنه في اختبارات الصح والخطأ.`;
-            }
-
-            navigator.clipboard.writeText(text).then(() => {
-                showToast('تم نسخ البرومبت بنجاح إلى الحافظة!');
-            }).catch(() => {
-                showToast('تعذر النسخ التلقائي');
-            });
-        }
-
-        // Show Toast
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').innerText = msg;
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'pointer-events-none');
-            }, 3000);
-        }
-
-        // Run on load
-        window.addEventListener('DOMContentLoaded', initApp);
-    </script>
+        answeredQuestions.delete(item);
+      });
+      updateGlobalQuizProgress();
+    }
+  </script>
 </body>
 </html>
